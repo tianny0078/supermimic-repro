@@ -26,4 +26,13 @@ The previous pilot implies roughly 0.23–0.27 s/iteration after compilation. A 
 
 ## Publication
 
-The initial connected GitHub write returned HTTP 403. The user has since reauthorized the integration and requested write verification and publication. No convergence claim is made by publishing the implementation.
+GitHub reauthorization succeeded. README initialization and complete source publication on main were verified. The code tree of published commit `cb2ce51a5fc2cd8f9947acf3689bc206bf69af7a` exactly matches local source revision `7e4be07085ce1d7d7b202ae53d90673b77e63623`. Pre-publication local history is retained locally. No convergence claim is made by publishing the implementation.
+
+## New regression and formal training
+
+- Slurm **740**: **38 GPU tests passed** in 61.37 s, including full-state critic translation sensitivity, atomic JSON report round trips and frozen submission snapshots.
+- Slurm **741**: regenerated and saved the old 240-iteration pilot's 40-clip report. Macro return 0.0014522, 40/40 failed; this is an expected unconverged workflow artifact, not a trained benchmark result.
+- Slurm **742**: fresh formal reference-only/full-state-critic run started. Budget: 3 training hours, 3.5-hour Slurm allocation, one H200, 8 CPUs, 64 GiB host RAM. Actor proprioception remains 93 values/frame. No resume from the old critic configuration.
+- Initial health check passed 200 iterations with finite metrics/gradients, approximately 3.5 it/s and 17.6 GiB peak Torch allocation. The memory figure excludes Warp/driver allocations. It does not establish convergence.
+- Slurm **743**: queued after successful training to evaluate final/periodic checkpoints and write an evaluation index.
+- Machine-readable evidence is in `experiments/2026-10-23/validation.json`; live metrics/checkpoints are under the output run directory and are not committed.

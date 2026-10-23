@@ -6,6 +6,8 @@ Work in progress. No independently measured convergence result is claimed yet. T
 
 All GPU simulation, tests, training and evaluation on the development server must run through Slurm. CPU data conversion does not need a GPU.
 
+Validation on 2026-10-23: **38 GPU tests passed**; the full-scale pilot and JSON evaluation flow completed. A first three-hour reference-only/full-state-critic training run is in progress. These are pipeline checks, not a converged reproduction claim. See [recorded evidence](experiments/2026-10-23/validation.json).
+
 ## Install and data
 
 Linux, Python 3.12, CUDA-capable NVIDIA GPU and a driver compatible with CUDA 13 are required by the pinned dependency lock. Setup uses a managed Python with development headers for Triton, without changing the system Python.

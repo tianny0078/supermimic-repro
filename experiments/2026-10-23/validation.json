@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-23",
+  "source_local_revision": "7e4be07085ce1d7d7b202ae53d90673b77e63623",
+  "published_code_commit": "cb2ce51a5fc2cd8f9947acf3689bc206bf69af7a",
+  "published_tree": "35f404aa51b2853e93bd52d71289c86dfbe2eabd",
+  "source_sha256": "8e93b3bbfe1abfb21b5fccd12e38985d33f8ac492289fb85b122ebcdfb309f93",
+  "dataset_sha256": "39e17fa7ced964ec04cb226a7ad9b1b206c26cacf096daa82c5ecd5b4ebe1f83",
+  "gpu_tests": {
+    "job": 740,
+    "passed": 38,
+    "seconds": 61.37
+  },
+  "pilot_evaluation": {
+    "job": 741,
+    "training_job": 731,
+    "training_iterations": 240,
+    "summary": {
+      "protocol": "full-reference-v1",
+      "clips": 40,
+      "failed": 40,
+      "mean_norm_return": 0.001452189530602918,
+      "reference_weighted_norm_return": 0.001387100318639734,
+      "executed_steps": 1561,
+      "reference_steps": 441100,
+      "completion": 0.003538880072545908,
+      "terms": {
+        "motion_global_root_pos": 0.008102842949660141,
+        "motion_global_root_ori": 0.0036830734903044154,
+        "motion_body_pos": 0.00926463978936625,
+        "motion_body_ori": 0.0015152959984743313,
+        "motion_body_lin_vel": 0.010166868099717282,
+        "motion_body_ang_vel": 0.0074163014158692446,
+        "action_rate_l2": -0.0002604000760191034,
+        "joint_limit": -0.0006925980814044709
+      }
+    },
+    "interpretation": "Unconverged workflow artifact; not a reproduction score"
+  },
+  "formal_training": {
+    "job": 742,
+    "evaluation_job": 743,
+    "run": "lafan1-reference-full-state-seed0",
+    "max_training_hours": 3,
+    "slurm_limit": "03:30:00",
+    "initial_health_check": {
+      "state": "training",
+      "iteration": 500,
+      "updates": 184,
+      "elapsed_session_s": 141.9031150341034,
+      "iterations_per_second": 3.6725614155915323,
+      "memory/torch_peak_allocated_gib": 17.6100115776062
+    },
+    "critic_state": "full",
+    "actor_proprioception_per_frame": 93,
+    "goal": "reference-only",
+    "convergence_verified": false
+  }
+}
