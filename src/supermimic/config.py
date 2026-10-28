@@ -33,6 +33,7 @@ class EnvCfg:
     future_frames: int = 10
     compact_library: bool = False
     anchor_obs: bool = False
+    anchor_orientation: bool = False  # Current reference-to-robot torso rotation only (6D).
 
 
 @dataclass

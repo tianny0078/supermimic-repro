@@ -35,8 +35,10 @@ from supermimic.world_model.world_model import WorldModel
 class Trainer:
     def __init__(self, cfg: TrainConfig):
         self.cfg = cfg
-        cfg.policy.goal_dim = cfg.env.future_frames * 68 + (9 if cfg.env.anchor_obs else 0)
+        from supermimic.goal_spec import goal_dim
+        cfg.policy.goal_dim = goal_dim(cfg.env.future_frames, cfg.env.anchor_obs, cfg.env.anchor_orientation)
         cfg.policy_trainer.anchor_obs = cfg.env.anchor_obs
+        cfg.policy_trainer.anchor_orientation = cfg.env.anchor_orientation
         self.rank, local_rank, self.world = init_distributed()
         self.is_main = self.rank == 0
         if self.world > 1:
@@ -77,6 +79,7 @@ class Trainer:
                 replay_capacity=cfg.env.replay_capacity,
                 compact_library=cfg.env.compact_library,
                 anchor_obs=cfg.env.anchor_obs,
+                anchor_orientation=cfg.env.anchor_orientation,
                 seed=cfg.seed + 1000 * self.rank,
             ),
             device=self.device,
@@ -149,7 +152,11 @@ class Trainer:
         if ck.get("manifest", {}).get("dataset_sha256") != self.manifest["dataset_sha256"]:
             raise ValueError("Resume dataset differs from the checkpoint; refusing to mix motion libraries")
         for section in ("world_model", "policy", "critic", "env", "wm_trainer", "policy_trainer"):
-            if ck["config"][section] != asdict(self.cfg)[section]:
+            saved = dict(ck["config"][section])
+            if section in ("env", "policy_trainer"):
+                # Old checkpoints predate the orientation-only opt-in switch.
+                saved.setdefault("anchor_orientation", False)
+            if saved != asdict(self.cfg)[section]:
                 raise ValueError(f"Resume config mismatch in {section}")
         self.wm.load_state_dict(ck["wm"])
         self.policy.load_state_dict(ck["policy"])

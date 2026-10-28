@@ -29,7 +29,7 @@ def main(run_dir: Path, npz_dir: Path = Path("data/npz/lafan1"), device: str = "
         report = json.loads(report_path.read_text())
         iteration = report["metadata"]["checkpoint_iteration"]
         if iteration not in seen_iterations:
-            entries.append({"iteration": iteration, "train_elapsed_s": report["metadata"]["train_elapsed_s"],
+            entries.append({"iteration": iteration, "updates": report["metadata"]["checkpoint_updates"], "train_elapsed_s": report["metadata"]["train_elapsed_s"],
                             "checkpoint": checkpoint, "checkpoint_sha256": report["metadata"]["checkpoint_sha256"],
                             "report": report_path, **report["summary"]})
             seen_iterations.add(iteration)

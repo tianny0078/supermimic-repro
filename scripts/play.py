@@ -61,6 +61,7 @@ def main(
         record_transitions=False,
         seed=0,
         anchor_obs=cfg["env"].get("anchor_obs", False),
+        anchor_orientation=cfg["env"].get("anchor_orientation", False),
         debug_vis=ghost,
     )
     env = RslRlVecEnvWrapper(make_env(args, device=device))

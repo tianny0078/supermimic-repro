@@ -47,7 +47,7 @@ def load_policy_checkpoint(path: str | Path, device: str) -> tuple[Policy, dict,
 
 
 @torch.no_grad()
-def run_benchmark(policy: Policy, npz_files: list[str], device: str = "cuda:0", num_envs: int | None = None, future_frames: int = 10, verbose: bool = True, anchor_obs: bool = False) -> list[ClipResult]:
+def run_benchmark(policy: Policy, npz_files: list[str], device: str = "cuda:0", num_envs: int | None = None, future_frames: int = 10, verbose: bool = True, anchor_obs: bool = False, anchor_orientation: bool = False) -> list[ClipResult]:
     num_envs = min(num_envs or 1024, len(npz_files))
     if num_envs < 1:
         raise ValueError("Benchmark requires at least one motion and one environment")
@@ -64,6 +64,7 @@ def run_benchmark(policy: Policy, npz_files: list[str], device: str = "cuda:0", 
         record_transitions=False,
         seed=0,
         anchor_obs=anchor_obs,
+        anchor_orientation=anchor_orientation,
     )
     env = make_env(args, device=device)
     try:

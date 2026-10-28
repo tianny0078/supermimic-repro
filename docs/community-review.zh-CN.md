@@ -1,5 +1,7 @@
 # SuperMimic 论文与 GitHub 复现调研
 
+> 历史快照：本文件保留 2026-10-22 的初筛。最新的 [结果与源码复核](community-code-audit.zh-CN.md) 及 [53 个搜索结果＋MorphMimic 索引](community-repositories-2026-10-25.md) 已补充新增仓库、TrackerLab 迁移/新成绩，并纠正 Cuboi 上游按已执行步数归一化的遗漏。不要直接把下表所有分数当成同口径结果。
+
 调研日期：2026-10-22（America/Los_Angeles）。查询了 GitHub 名称/描述搜索和 README 扩展搜索，筛出 10 个相关实现仓库；未把论文日报、论文列表和普通 fork 重复计入。仓库仍在快速变化，查询快照在 repositories.json，查询时 main 的 SHA 在 revisions.json。
 
 本次完成论文正文、附录、10 个仓库 README 和目录检查，并抽查重点实现的世界模型、BPTT、观测、评估和实验记录。没有安装训练依赖、下载动作数据或执行 GPU 程序。下列训练成绩是仓库作者报告，未经本机独立复测。

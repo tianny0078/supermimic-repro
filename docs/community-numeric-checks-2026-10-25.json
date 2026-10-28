@@ -1,0 +1,121 @@
+{
+  "scope": "CPU arithmetic on public result records; no independent simulation or wall-clock validation",
+  "dhmbb2": {
+    "source_commit": "072f0910dadc9d95c720e625b546120e9ce917c9",
+    "clips": 40,
+    "macro_from_rounded_per_clip": 0.9463,
+    "failed": 0
+  },
+  "m5": {
+    "source_commit": "42451591718e1a9a5ec601366997f47c0ad180a3",
+    "clips": 40,
+    "executed_step_macro": 0.7080947730467414,
+    "full_N_frame_macro": 0.5826002841671957,
+    "full_N_minus_1_interval_macro": 0.5826531925274018,
+    "full_N_minus_1_interval_weighted": 0.6079281281787126,
+    "failed": 15,
+    "steps_exceed_N_minus_1": 25,
+    "caveat": "Historical evaluator executes N steps for completed clips; arithmetic conversion does not fix the extra transition or replace simulator reevaluation."
+  },
+  "fan_ziqi": {
+    "source_commit": "8513519b1b9b2d18ac61089748ddebbfe1bcf52b",
+    "reported_macro": 0.7308963641524315,
+    "failed": 15,
+    "bound": "Per-step reward <= 0.1, so full-reference-normalized return <= executed_steps / (frames - 1)",
+    "violations_count": 13,
+    "violations": [
+      {
+        "clip": "dance2_subject4",
+        "reported": 0.6912932395935059,
+        "maximum_full_reference_return": 0.26154391562527696,
+        "survived_steps": 2951,
+        "reference_steps": 11283
+      },
+      {
+        "clip": "dance2_subject5",
+        "reported": 0.8232870101928711,
+        "maximum_full_reference_return": 0.19542674820526457,
+        "survived_steps": 2205,
+        "reference_steps": 11283
+      },
+      {
+        "clip": "fallAndGetUp1_subject1",
+        "reported": 0.8000171184539795,
+        "maximum_full_reference_return": 0.034486859317398026,
+        "survived_steps": 290,
+        "reference_steps": 8409
+      },
+      {
+        "clip": "fallAndGetUp1_subject4",
+        "reported": 0.7620940804481506,
+        "maximum_full_reference_return": 0.04851944345344274,
+        "survived_steps": 408,
+        "reference_steps": 8409
+      },
+      {
+        "clip": "fallAndGetUp1_subject5",
+        "reported": 0.8388374447822571,
+        "maximum_full_reference_return": 0.04637887977167321,
+        "survived_steps": 390,
+        "reference_steps": 8409
+      },
+      {
+        "clip": "fallAndGetUp2_subject2",
+        "reported": 0.5996840596199036,
+        "maximum_full_reference_return": 0.09226263119355627,
+        "survived_steps": 756,
+        "reference_steps": 8194
+      },
+      {
+        "clip": "fallAndGetUp2_subject3",
+        "reported": 0.6172901391983032,
+        "maximum_full_reference_return": 0.08469611911154504,
+        "survived_steps": 694,
+        "reference_steps": 8194
+      },
+      {
+        "clip": "fallAndGetUp3_subject1",
+        "reported": 0.7507815957069397,
+        "maximum_full_reference_return": 0.0898590446358653,
+        "survived_steps": 459,
+        "reference_steps": 5108
+      },
+      {
+        "clip": "fight1_subject2",
+        "reported": 0.6330955028533936,
+        "maximum_full_reference_return": 0.6012415257698277,
+        "survived_steps": 7361,
+        "reference_steps": 12243
+      },
+      {
+        "clip": "fightAndSports1_subject1",
+        "reported": 0.6690121293067932,
+        "maximum_full_reference_return": 0.02814947780678851,
+        "survived_steps": 345,
+        "reference_steps": 12256
+      },
+      {
+        "clip": "jumps1_subject2",
+        "reported": 0.7264807820320129,
+        "maximum_full_reference_return": 0.06169707879878897,
+        "survived_steps": 754,
+        "reference_steps": 12221
+      },
+      {
+        "clip": "jumps1_subject5",
+        "reported": 0.5957247018814087,
+        "maximum_full_reference_return": 0.3337697406104247,
+        "survived_steps": 4079,
+        "reference_steps": 12221
+      },
+      {
+        "clip": "walk3_subject1",
+        "reported": 0.7997688055038452,
+        "maximum_full_reference_return": 0.7563468245599805,
+        "survived_steps": 9325,
+        "reference_steps": 12329
+      }
+    ],
+    "caveat": "A mismatch between saved evidence and current code; cause not established."
+  }
+}

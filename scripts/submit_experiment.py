@@ -39,7 +39,9 @@ def main() -> None:
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--run-dir", type=Path)
     parser.add_argument("--resume", type=Path)
-    parser.add_argument("--anchor-goal", action="store_true")
+    goals = parser.add_mutually_exclusive_group()
+    goals.add_argument("--anchor-goal", action="store_true")
+    goals.add_argument("--orientation-goal", action="store_true")
     parser.add_argument("--output", type=Path, default=Path("/mnt/data") / os.environ["USER"] / "supermimic-repro")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -74,6 +76,8 @@ def main() -> None:
             command += ["--resume", str(args.resume.resolve())]
         if args.anchor_goal:
             command += ["--anchor-goal"]
+        if args.orientation_goal:
+            command += ["--orientation-goal"]
     elif args.kind == "evaluate":
         command += ["--ckpt", str(args.checkpoint.resolve())]
     elif args.kind == "evaluate-run":

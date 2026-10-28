@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-SUPERMIMIC_PYTHON="${SUPERMIMIC_PYTHON:-/mnt/data/$USER/supermimic-repro-env/bin/python}"
+SUPERMIMIC_PYTHON="${SUPERMIMIC_PYTHON:-/home/$USER/.venvs/supermimic-repro/bin/python}"
 SUPERMIMIC_OUTPUT_ROOT="${SUPERMIMIC_OUTPUT_ROOT:-/mnt/data/$USER/supermimic-repro}"
 LAFAN1_ROOT="${LAFAN1_ROOT:-/mnt/data/datasets/lafan1_g1/raw}"
 export CUDA_VISIBLE_DEVICES=''

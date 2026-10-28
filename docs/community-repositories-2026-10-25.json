@@ -1,0 +1,991 @@
+{
+  "searched_at_utc": "2026-10-26T02:32:46.545Z",
+  "display_date": "2026-10-25",
+  "display_timezone": "America/Los_Angeles",
+  "query": "supermimic",
+  "search_total": 53,
+  "limitations": [
+    "GitHub 名称/描述搜索不是所有相关实现的全集；搜索接口连续超时后通过公开 REST 搜索完成。",
+    "第三方结果来自公开文档/JSON，未在本机重训或运行其 GPU 评估。",
+    "按固定提交读取；各仓库训练结果可能对应更早源码，不能默认当前 HEAD 就是训练源码。"
+  ],
+  "repositories": [
+    {
+      "branch": "main",
+      "description": "vibe coded supermimic within 1h, LAFAN passed within 1.5 gpuh training",
+      "repo": "zita-ch/supermimic_vibed",
+      "head_sha": "a1508d42c9d1699a52e8233ab16d08c488441ab9",
+      "commit_utc": "2026-10-21T20:39:38Z",
+      "tree_files": 35,
+      "tree_truncated": false,
+      "read_files": [
+        "MILESTONES.md",
+        "README.md",
+        "supermimic/env.py",
+        "supermimic/evaluate.py",
+        "supermimic/mdp.py",
+        "supermimic/networks.py",
+        "supermimic/train.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 0.829，0/40；1.47 h，RTX PRO 6000",
+      "review_note": "99维观测含6D相对朝向；bf16；关闭自碰撞；完整长度分母。"
+    },
+    {
+      "branch": "main",
+      "description": "Reproduction of SuperMimic (arXiv:2610.28480): learned differentiable world model + BPTT policy for G1 humanoid motion tracking, on mjlab/MuJoCo Warp",
+      "repo": "CuboiLeo/SuperMimic-Reproduced",
+      "head_sha": "d9be385b3eeb13a638fb33fb200d3bfd9be9839f",
+      "commit_utc": "2026-10-22T05:13:13Z",
+      "tree_files": 85,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/EXPERIMENTS.md",
+        "src/supermimic/envs/mdp/motion_library.py",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py",
+        "src/supermimic/imagination/objective.py",
+        "src/supermimic/imagination/policy_trainer.py",
+        "src/supermimic/world_model/wm_trainer.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 +9位姿 0.824/0.904；5/3失败；纯参考约0.56",
+      "review_note": "基线；评估分母是已执行步数；BONES高分仅2000子集。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic-UniLab: An Independent reproduction of SuperMimic on UniLab for whole-body humanoid motion tracking.",
+      "repo": "Motphys/Uni-SuperMimic",
+      "head_sha": "faf7818e8abac3ec6abb8f00e6e904d3577f800b",
+      "commit_utc": "2026-10-24T07:55:35Z",
+      "tree_files": 91,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "src/unisupermimic/conf/supermimic/task/g1_super_mimic/base.yaml",
+        "src/unisupermimic/rl/algos/supermimic/learner.py",
+        "src/unisupermimic/tasks/motion_tracking/g1/supermimic/evaluate.py",
+        "src/unisupermimic/tasks/motion_tracking/g1/supermimic/mdp.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 0.827227，0/40；12k checkpoint",
+      "review_note": "vibed下游；相对朝向；完整长度分母；更新UniLab依赖。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "Zhengtianjin/go2-supermimic",
+      "head_sha": "054a13c13285a1c94b2e69dc8ac7331f9a8c71cf",
+      "commit_utc": "2026-10-23T19:55:39Z",
+      "tree_files": 65,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "Go2追逐/躲避任务",
+      "review_note": "非G1动作库基准，不纳入LAFAN排名。"
+    },
+    {
+      "branch": "main",
+      "description": "在同一静态站立任务上，对比 MBRL（SuperMimic） 与 PPO（原版 BeyondMimic），两组各累计训练约 1 小时。",
+      "repo": "JackMin7/supermimic_whole_body_tracking",
+      "head_sha": "553a7d32dc5fc00cbe6de5ee46479af2fcceeda8",
+      "commit_utc": "2026-10-22T09:37:24Z",
+      "tree_files": 55,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/EXPERIMENTS.md",
+        "evaluate.py",
+        "mbrl/core.py",
+        "results/standing_1h/evaluation.json"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "32/32个60秒站立rollout",
+      "review_note": "静态站立；并行环境不是独立种子。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "btx0424/rethinking-supermimic",
+      "head_sha": "ecdaeb6a916a16cf7eb69b19226c17be31a6bc27",
+      "commit_utc": "2026-10-23T17:37:29Z",
+      "tree_files": 37,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "src/supermimic/mdp.py",
+        "src/supermimic/train.py"
+      ],
+      "readme_available": true,
+      "category": "代码",
+      "claim": "未见README收敛分数",
+      "review_note": "有相对朝向/位置、contact特征和actor选项；默认解释需看Hydra配置。"
+    },
+    {
+      "branch": "main",
+      "description": "基于 SuperMimic 复现与适配，在 MuJoCo 闭环仿真中实现前空翻、后空翻、侧空翻、侧手翻等高动态动作，并支持爬行、跌倒起身与全身动作跟踪。",
+      "repo": "Baojch/SuperMimic_Dyn",
+      "head_sha": "28b15acb68ab3871f2ae1479964d53457ac066c6",
+      "commit_utc": "2026-10-24T03:49:11Z",
+      "tree_files": 777,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/METHOD_AND_CHANGES.md",
+        "docs/RESULTS.md",
+        "reproducibility/e009/results.json",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py",
+        "src/supermimic/imagination/policy_trainer.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "验证3939/3966完成；完整片段回报0.86454",
+      "review_note": "full689；双4090约4.09h；自定义95323训练片段、均衡采样/移除手部几何；非论文全库。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic re-implementation",
+      "repo": "Shimingyi/allmimic",
+      "head_sha": "cb334ff674b2f57248f33f8c21b7fb526fbdf8cc",
+      "commit_utc": "2026-10-25T06:02:16Z",
+      "tree_files": 60,
+      "tree_truncated": false,
+      "read_files": [
+        "CHANGES.md",
+        "README.md",
+        "allmimic/evaluate.py",
+        "allmimic/networks.py",
+        "allmimic/task.py",
+        "allmimic/train.py",
+        "tests/test_goal_modes.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 0.94，0/40，2h；困难集306/306",
+      "review_note": "上身残差、latent128、采样/值裁剪等改变；困难集与论文ID和数量不同。"
+    },
+    {
+      "branch": "main",
+      "description": "TrackerLab SuperMimic: G1 data processing, IsaacLab/PhysX training, evaluation and policy export",
+      "repo": "Renforce-Dynamics/trackerlab-supermimic",
+      "head_sha": "29d24524f2f731bf4df75b319c3e76544165849e",
+      "commit_utc": "2026-10-25T16:17:15Z",
+      "tree_files": 247,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/method.md",
+        "docs/results.md",
+        "scripts/rls/supermimic/evaluate.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 0.8694663，0/40；32k checkpoint",
+      "review_note": "原ZouYan93仓库迁移；PhysX；旧列表只列2k结果已过时。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "YanYuan98/Supermimic_mod",
+      "head_sha": "6932f1cd33532b4e84ff173df926d8195a58c45a",
+      "commit_utc": "2026-10-23T12:43:06Z",
+      "tree_files": 99,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/EXPERIMENTS.md",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py",
+        "src/supermimic/goal_spec.py",
+        "src/supermimic/imagination/policy_trainer.py",
+        "src/supermimic/training/loop.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "TF32单5090约3h 0.850，0/40；纯参考0.564，5/40",
+      "review_note": "6D相对朝向；目标未来轨迹扩展；完整长度分母；有明确纯参考对照。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic reproduction with standalone MuJoCo and MJLab, trained G1 policy and reproducible evaluation",
+      "repo": "panhainan2020/SuperMimic-MuJoCo",
+      "head_sha": "db045afa9c52458f213e2c66037387e9c109a03a",
+      "commit_utc": "2026-10-23T12:32:24Z",
+      "tree_files": 149,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "results/098000/REPORT.md",
+        "results/098000/provenance.json",
+        "results/098000/summary.json",
+        "supermimic/evaluate.py",
+        "supermimic/mdp.py",
+        "supermimic/train.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 0.871322，40/40；100STYLE 0.804516，3569/3573",
+      "review_note": "vibed移植；99维观测；98k固定checkpoint；完整分母；全局根误差仍0.643m。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "tianshuwu/supermimic-retargeted",
+      "head_sha": "ff69a0e5305126eb5b80b323bcd815805bc3df4e",
+      "commit_utc": "2026-10-23T10:47:33Z",
+      "tree_files": 162,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/EXPERIMENTS.md",
+        "docs/results/summary.json",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "G1 LAFAN基线0.90736，0/40",
+      "review_note": "G1/A3/X2移植；anchor_obs；同时提供完整片段加权与旧已执行步分数。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "humble02/supermimic_mjlab_vibed",
+      "head_sha": "beb18b33ba0e05baaddb9a4c608a7b8b4bc988ce",
+      "commit_utc": "2026-10-22T15:58:21Z",
+      "tree_files": 33,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "supermimic/evaluate.py",
+        "supermimic/mdp.py",
+        "supermimic/train.py"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "mjlab迁移/续训/短训验证",
+      "review_note": "未完成长训，不能继承vibed成绩。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "RaraAlu/Supermimic",
+      "head_sha": "60f2f9fb31c068ed2ca16209548915f1382a6d50",
+      "commit_utc": "2026-10-26T01:50:26Z",
+      "tree_files": 50,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/analysis/algorithm.md",
+        "supermimic/scripts/evaluate.py",
+        "supermimic/scripts/train.py",
+        "supermimic/tasks/tracking/mdp.py"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "多卡/索引HDF5流程及小规模验证",
+      "review_note": "H100/NCCL/长训未验收，8卡是目标配置。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "KyrieYoung926/supermimic_deploy",
+      "head_sha": "7e63e3bbd5150d55afbdece28278781800f3ed21",
+      "commit_utc": "2026-10-23T13:59:25Z",
+      "tree_files": 61,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "部署",
+      "claim": "G1 MuJoCo/真机部署演示",
+      "review_note": "训练基于Cuboi；部署项目，不是独立完整基准。"
+    },
+    {
+      "branch": "main",
+      "description": "Independent SuperMimic reproduction for Unitree G1 with MuJoCo Warp: training/evaluation code and BONES-SEED validation demos. Derived from CuboiLeo/SuperMimic-Reproduced.",
+      "repo": "kangzejian1896/supermimic-g1-reproduction",
+      "head_sha": "5daf8586f26da3ef3bd99bdd875c8f8ce1b4e18e",
+      "commit_utc": "2026-10-24T07:37:24Z",
+      "tree_files": 130,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/benchmark_168k.json",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "128验证片0.92897，0失败；84287训练片0.94424，9失败",
+      "review_note": "A800约25.86h；验证参与选模；paper_protocol可选；非129514片集。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "wenconggan/SuperMimic_e1",
+      "head_sha": "103adbf754f21e5081077ea9e774c722737d5529",
+      "commit_utc": "2026-10-23T02:17:53Z",
+      "tree_files": 99,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "异本体",
+      "claim": "E1 21DoF，0.8559，40/40；164k",
+      "review_note": "不同机器人；完整动作与随机8秒演示分开。"
+    },
+    {
+      "branch": "main",
+      "description": "G1 perceptive SuperMimic prototype with a pretrained frozen heightmap autoencoder shared by policy, critic and world model.",
+      "repo": "mode1223345/SuperMimic-perceptive",
+      "head_sha": "3d38bacbaf5bee7e782bdada6a6da678264d0bfa",
+      "commit_utc": "2026-10-24T12:01:26Z",
+      "tree_files": 77,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "高程图AE预训练/恢复流程已验证",
+      "review_note": "四组控制对照尚在进行；保留vibed成绩非本分支结果。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "fan-ziqi/supermimic-agy",
+      "head_sha": "8513519b1b9b2d18ac61089748ddebbfe1bcf52b",
+      "commit_utc": "2026-10-24T15:33:33Z",
+      "tree_files": 60,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "runs/supermimic_lafan_1gpu/full_eval.json",
+        "supermimic/evaluate.py",
+        "supermimic/features.py",
+        "supermimic/state.py",
+        "supermimic/train.py"
+      ],
+      "readme_available": true,
+      "category": "需核验",
+      "claim": "公开full_eval 0.730896，15/40失败",
+      "review_note": "13条逐片分数超出完成比例理论上界；当前代码与历史JSON口径不一致。"
+    },
+    {
+      "branch": "main",
+      "description": "Unofficial SuperMimic reproduction and multi-embodiment toolkit for Unitree G1/H2 and Agibot A3",
+      "repo": "OMEGA-i/SuperMimicKit",
+      "head_sha": "6697ff8ca53adc9233ded12a7c8777610ca1154d",
+      "commit_utc": "2026-10-24T09:30:58Z",
+      "tree_files": 291,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/preview-evaluation-g1-55500.json",
+        "scripts/evaluate_full_motions.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "G1 train40 0.798961，3失败；val37 0.3103，31失败",
+      "review_note": "保留55.5k，100k策略40/40失败；有训练退化证据。"
+    },
+    {
+      "branch": "main",
+      "description": "Reproduce of Supermimic in Mjlab",
+      "repo": "Breezewrf/supermimic_mjlab",
+      "head_sha": "aab90addd0e783b007691442907bc8c9ce145970",
+      "commit_utc": "2026-10-24T04:40:02Z",
+      "tree_files": 153,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "README_zh.md",
+        "doc/experiments/implementation_validation_zh.md",
+        "src/tasks/supermimic/config/task_cfg.py",
+        "src/tasks/supermimic/mdp/state.py",
+        "src/tasks/supermimic/models/policy.py",
+        "src/tasks/supermimic/rl/evaluation.py",
+        "src/tasks/supermimic/rl/imagination.py"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "历史100轮短训0.001681，0/40完成",
+      "review_note": "明确只是闭环验证；修复后尚无论文收敛结果。"
+    },
+    {
+      "branch": "main",
+      "description": "A lightweight reproduction of Supermimic (https://supermimic.github.io/).",
+      "repo": "zzhanYoung/supermimic-lite",
+      "head_sha": "e4a67b0f61701e7a47fc96392b4fe8342ce5a672",
+      "commit_utc": "2026-10-23T10:30:32Z",
+      "tree_files": 625,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "框架",
+      "claim": "README仍是mjlab介绍",
+      "review_note": "树中以mjlab为主，未见可确认的SuperMimic成绩。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "enffft/supermimic",
+      "head_sha": "fa033b8e3b7c5e91bf3ef98a62d40e4d049361be",
+      "commit_utc": "2026-10-24T06:59:19Z",
+      "tree_files": 88,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "副本",
+      "claim": "README与Cuboi相同",
+      "review_note": "未找到独立于上游的README结果证据。"
+    },
+    {
+      "branch": "main",
+      "description": "supermimic reproduce",
+      "repo": "yangkunpeng-coder/supermimic_reproduce",
+      "head_sha": "31ad48ff1e4a426dd5c9ede08ad7dbc4f67bce9f",
+      "commit_utc": "2026-10-25T11:41:36Z",
+      "tree_files": 1,
+      "tree_truncated": false,
+      "read_files": [],
+      "readme_available": false,
+      "category": "占位",
+      "claim": "只有LICENSE",
+      "review_note": "无训练实现/结果。"
+    },
+    {
+      "branch": "smimic-ext",
+      "description": "reproducing supermimic",
+      "repo": "CesarLiu/smimic",
+      "head_sha": "0c1cda553c667e4fe91dc4f141184938b07db314",
+      "commit_utc": "2026-10-25T23:45:24Z",
+      "tree_files": 165,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "继承UniLab的0.827227表格，另有Go2迁移/鲁棒训练",
+      "review_note": "不能把继承的12k表格算为一次独立复现。"
+    },
+    {
+      "branch": "main",
+      "description": "Standalone A3 Ultra SuperMimic v8 training: four-GPU rigid e5 recipe, bundled robot model, SwanLab, evaluation and export.",
+      "repo": "BlackOtters/supermimicA3",
+      "head_sha": "ae20f02f2a5391f3243b71f4e9d7ee7cad9062eb",
+      "commit_utc": "2026-10-25T01:38:30Z",
+      "tree_files": 292,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "异本体",
+      "claim": "A3 Ultra v10四卡刚性配方",
+      "review_note": "明确未声称收敛或真机迁移；6D相对朝向目标。"
+    },
+    {
+      "branch": "main",
+      "description": "Exploring dexterous manipulation with differentiable world models, inspired by SuperMimic.",
+      "repo": "jackzedgar/SuperDex",
+      "head_sha": "f0ae61c64b65d10ef4f80e92394019b913ceee32",
+      "commit_utc": "2026-10-23T02:17:51Z",
+      "tree_files": 1,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "占位",
+      "claim": "灵巧手世界模型设想",
+      "review_note": "目录只有README，无实现或实验。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "PrimebotTech/SuperMimic",
+      "head_sha": "118338b19dcd14f768d1e7de5a48d04b78987688",
+      "commit_utc": "2026-10-24T12:20:27Z",
+      "tree_files": 94,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "异本体",
+      "claim": "Q1 V2 22关节，训练质量仍验证",
+      "review_note": "非G1，不作为论文LAFAN结果。"
+    },
+    {
+      "branch": "main",
+      "description": "复刻SuperMimic(CoRL 2026 Oral)",
+      "repo": "yagami-light7/SuperMimic-codex",
+      "head_sha": "d2b1875ac4319a56607485109a6e972592b66df1",
+      "commit_utc": "2026-10-24T12:23:04Z",
+      "tree_files": 38,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "M0 16/64环境300步通过",
+      "review_note": "无训练策略或权重，尚待下一阶段。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "Go-Youngster/supermimic-reproduce",
+      "head_sha": "02db3d5ae75a54c76ddec969c8bd63cc8fefc661",
+      "commit_utc": "2026-10-25T06:39:00Z",
+      "tree_files": 43,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "supermimic/evaluate.py",
+        "supermimic/networks.py",
+        "supermimic/task.py",
+        "supermimic/train_supermimic.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "A100 3h到0.82；15.7h最佳0.875，0/40",
+      "review_note": "93维本体+710维含相对朝向goal；bf16；完整分母；单种子。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic-style model-based control on LocoMuJoCo H1 and LAFAN1, with world-model and action-output experiments.",
+      "repo": "Alchedata/supermimic-locomujoco",
+      "head_sha": "cc1375d48a38bde062d088ffd132122e0cd7b7da",
+      "commit_utc": "2026-10-24T23:03:06Z",
+      "tree_files": 45,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "H1 40动作，5k多种子，原生return约800",
+      "review_note": "JAX/LocoMuJoCo；任务奖励和本体不同，不能把原生return与0.82比较。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "KunYing-Lee/SuperMimic",
+      "head_sha": "95eeba6e9a0deed9d5c16623dc3ac2650204bba8",
+      "commit_utc": "2026-10-23T17:54:11Z",
+      "tree_files": 67,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/evaluation_comparison.md",
+        "docs/paper_alignment.md",
+        "supermimic/mdp.py"
+      ],
+      "readme_available": true,
+      "category": "代码",
+      "claim": "mjlab移植及选片演示",
+      "review_note": "有论文对齐和误差对照工具；README未给本分支完整收敛分数。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "dhmbb2/supermimic_vibe",
+      "head_sha": "072f0910dadc9d95c720e625b546120e9ce917c9",
+      "commit_utc": "2026-10-22T14:57:53Z",
+      "tree_files": 70,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "code/supermimic/evaluate.py",
+        "code/supermimic/networks.py",
+        "code/supermimic/sim_env.py",
+        "code/supermimic/task.py",
+        "code/supermimic/train.py",
+        "notes/IMPLEMENTATION.md",
+        "notes/RESULTS.md",
+        "results/audit/claims.json",
+        "results/audit/fidelity.json",
+        "results/audit/per_clip.json",
+        "results/audit/runs.json"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "A6000 1.34h 0.833；12h 0.9463，0/40",
+      "review_note": "73×10相对根位姿goal；bf16；完整分母；逐片JSON可重算。"
+    },
+    {
+      "branch": "master",
+      "description": null,
+      "repo": "joreb/supermimic-yai",
+      "head_sha": "7e82875e1c6ffec11a15aa24a61a198cfb718e07",
+      "commit_utc": "2026-10-25T18:10:54Z",
+      "tree_files": 9,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "WIP",
+      "review_note": "部分笔记子模块私有；无公开收敛结果。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "yuntian137/supermimic_lab",
+      "head_sha": "466340db20fd180851632033e48e80662267458b",
+      "commit_utc": "2026-10-25T08:16:33Z",
+      "tree_files": 50,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "supermimic/evaluate.py",
+        "supermimic/mdp.py"
+      ],
+      "readme_available": true,
+      "category": "代码",
+      "claim": "4h34m；36k；最佳0.866784，40/40",
+      "review_note": "vibed工程适配；复评0.866452；训练库覆盖。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "Tianao-Zhang/supermimic_dualhand",
+      "head_sha": null,
+      "commit_utc": null,
+      "tree_files": null,
+      "tree_truncated": null,
+      "read_files": [],
+      "readme_available": false,
+      "metadata_size": 0,
+      "category": "空仓",
+      "claim": "仓库size=0，无提交可读",
+      "review_note": "无法评估实现。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic 的个人复现（非官方），基于 Isaac Lab，可跨项目复用，附智元远征 A3 示例。",
+      "repo": "chu-fa/isaaclab-supermimic",
+      "head_sha": "d350e4378c6dc08a3f2a1d35d47b45d83db0e081",
+      "commit_utc": "2026-10-25T02:27:24Z",
+      "tree_files": 90,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "IsaacLab通用接口与A3有界验证",
+      "review_note": "明确收敛/后端等价/论文性能未证明。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "tianny0078/supermimic-repro",
+      "head_sha": "5135b7c7a721be6bd9db613ac657d3f72609c918",
+      "commit_utc": "2026-10-23T07:45:41Z",
+      "tree_files": 112,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "本项目",
+      "claim": "H200 3h；最佳0.569920，3/40失败",
+      "review_note": "reference-only/full-state critic；32000采集步，约12784更新；完整N-1分母。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "xinruilee04/supermimic-test",
+      "head_sha": null,
+      "commit_utc": null,
+      "tree_files": null,
+      "tree_truncated": null,
+      "read_files": [],
+      "readme_available": false,
+      "metadata_size": 0,
+      "category": "空仓",
+      "claim": "仓库size=0，无提交可读",
+      "review_note": "无法评估实现。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "samindaa/supermimic_mjlab",
+      "head_sha": "9adcad37634058eea7cd53f0d9a02d2e8b944401",
+      "commit_utc": "2026-10-24T02:30:22Z",
+      "tree_files": 32,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "移植",
+      "claim": "本地4k评测0.732，4/40失败",
+      "review_note": "README的0.829/1.47h是原IsaacLab结果；不得继承为mjlab结果。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic (Unitree G1) Google Colab reproduction & 14k A100 training logs",
+      "repo": "HighTorque-Dev/supermimic-colab",
+      "head_sha": "f9ebd42d0b484b93747918e0ae7306b90f73a172",
+      "commit_utc": "2026-10-22T03:53:06Z",
+      "tree_files": 36,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "supermimic/evaluate.py"
+      ],
+      "readme_available": true,
+      "category": "移植",
+      "claim": "README完整继承vibed成绩",
+      "review_note": "notebook入口/权重名不一致在旧审查已记录；无独立结果证据。"
+    },
+    {
+      "branch": "main",
+      "description": "G1 SuperMimic-PERA: native UniLab world-model tracking baseline and interaction research",
+      "repo": "shangchaohu718/supermimic-pera",
+      "head_sha": "0e89e55187a800341e609129b5d5200a607a467c",
+      "commit_utc": "2026-10-23T09:26:01Z",
+      "tree_files": 157,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "本分支6k 0.715678，34/40完成；另有滑板技能",
+      "review_note": "继承UniLab；未完成12k目标，交互技能是另一任务。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "yhx1203/supermimic_mjlab",
+      "head_sha": null,
+      "commit_utc": null,
+      "tree_files": null,
+      "tree_truncated": null,
+      "read_files": [],
+      "readme_available": false,
+      "metadata_size": 0,
+      "category": "空仓",
+      "claim": "仓库size=0，无提交可读",
+      "review_note": "无法评估实现。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "LaoYang1994/SuperMimic-Rep",
+      "head_sha": "6f8db6b1e9e02062c44aee358d69c6c8852745ee",
+      "commit_utc": "2026-10-25T16:28:48Z",
+      "tree_files": 151,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/CONCEPTS.md",
+        "docs/CONTRACTS.md",
+        "src/supermimic/config.py",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py",
+        "src/supermimic/imagination/goals.py",
+        "src/supermimic/imagination/policy_trainer.py",
+        "src/supermimic/training/loop.py",
+        "src/supermimic/world_model/heads.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "LAFAN1 18k更新0.821，1失败；BONES 44k更新0.934，210/129511失败",
+      "review_note": "默认beyondmimic_seq含每未来帧相对朝向；修正完整分母；未达到全库失败数。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic motion tracking for the 31-DoF LimX Oli humanoid in Isaac Lab 3 / MuJoCo-Warp, with LAFAN1 retargeting and full-rollout video export.",
+      "repo": "liuskywalkerjskd/supermimic_oli",
+      "head_sha": "2dc90d90e89fb2e097e985c84c8b99a77708fa5f",
+      "commit_utc": "2026-10-23T13:43:48Z",
+      "tree_files": 65,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "异本体",
+      "claim": "Oli 31DoF 0.6783，36/40；4090约2.20h",
+      "review_note": "不同本体；继承G1 MILESTONES不是Oli训练记录。"
+    },
+    {
+      "branch": "main",
+      "description": "This is a reproduction of SuperMimic for dexterous hand manipulation task.",
+      "repo": "CumulusAlpha/Dex-Supermimic",
+      "head_sha": "5ca57628af3666a9b2878c00f461f43d6edb5b61",
+      "commit_utc": "2026-10-26T02:21:33Z",
+      "tree_files": 155,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "扩展",
+      "claim": "Wuji Hand2方块重定向，有8k权重Release入口",
+      "review_note": "非人形跟踪；README未给与论文可比统计。"
+    },
+    {
+      "branch": "main",
+      "description": "To verify the other task with the Supermimic",
+      "repo": "jboyxs/Supermimic_for_transcube",
+      "head_sha": "02aa010a5d1e76d8b403f36e7888cf45022f28e5",
+      "commit_utc": "2026-10-26T01:49:51Z",
+      "tree_files": 8,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "占位",
+      "claim": "空README、少量项目文件",
+      "review_note": "无可核对实验总结。"
+    },
+    {
+      "branch": "main",
+      "description": "Single RTX 5090 G1 backflip reproduction using SuperMimic: scratch training, contact-force validation, actual policy videos and Chinese reproduction guide",
+      "repo": "liudi159/supermimic-backflip-5090",
+      "head_sha": "5b313d75e804cdd2ff1ce9bdcfa899a98eca856b",
+      "commit_utc": "2026-10-25T04:22:34Z",
+      "tree_files": 80,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/METHOD_AND_PROVENANCE.md",
+        "patches/training_adapter.diff"
+      ],
+      "readme_available": true,
+      "category": "单动作",
+      "claim": "单5090约93min；完整翻转但严格落地验收未过",
+      "review_note": "一个动作一个种子；接触审计值得参考，不能称全库复现。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic 单卡复现：基于 mjlab 与 MuJoCo Warp，适配 RTX 4090 和 CUDA 12",
+      "repo": "sxh-kk/SuperMimic_Recurrence",
+      "head_sha": "c779ca4346612b907688d42337f293aaf3240b8d",
+      "commit_utc": "2026-10-25T13:47:52Z",
+      "tree_files": 266,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "流程",
+      "claim": "4090/CUDA12适配",
+      "review_note": "明确尚无论文指标复现结论。"
+    },
+    {
+      "branch": "main",
+      "description": "SuperMimic trained from scratch on Apple M5: MPS learning + CPU MuJoCo, all 40 LAFAN1 clips, reproducible setup, checkpoints, videos and measured results.",
+      "repo": "WXyuany/supermimic-m5",
+      "head_sha": "42451591718e1a9a5ec601366997f47c0ad180a3",
+      "commit_utc": "2026-10-25T09:02:20Z",
+      "tree_files": 132,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "results/benchmark_retuned_21000.json",
+        "src/supermimic/eval/benchmark.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "M5+CPU；0.7081，25/40完成",
+      "review_note": "+9位姿；已执行步分母；按公开逐片汇总改用全长度约0.5826。"
+    },
+    {
+      "branch": "main",
+      "description": null,
+      "repo": "Mark054/SuperMimic_TienKung",
+      "head_sha": "71c9f0e677c498edf387121fea27bf146bfcd423",
+      "commit_utc": "2026-10-25T03:55:48Z",
+      "tree_files": 224,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "异本体",
+      "claim": "天工3.0训练/数据/演示",
+      "review_note": "README未提供完整benchmark收敛分数。"
+    },
+    {
+      "branch": "main",
+      "description": "G1 moonwalk fine-tuning with the third-party SuperMimic_Dyn implementation: reproducible training, evaluation, CMU retargeting and before/after videos.",
+      "repo": "luoshaqi/g1-moonwalk-supermimic",
+      "head_sha": "2b445d40e874629d7874f95986f155e229e67924",
+      "commit_utc": "2026-10-26T01:40:14Z",
+      "tree_files": 33,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md"
+      ],
+      "readme_available": true,
+      "category": "单动作",
+      "claim": "微调3k 0.9453，300/300步完成",
+      "review_note": "E009预训练后拟合一条CMU动作，非从零/泛化。"
+    },
+    {
+      "branch": "main",
+      "description": "Unofficial reproduction of SuperMimic on Unitree G1: differentiable world model training in mjlab + full sim2real deployment.",
+      "repo": "NJU-R-L-Group-Embodied-Lab/SuperMimic-Repro-Sim2Real",
+      "head_sha": "99d310d5460333aabe853337b1d55ee27940a3fe",
+      "commit_utc": "2026-10-25T20:37:50Z",
+      "tree_files": 145,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "docs/METHOD.md",
+        "src/supermimic/envs/mdp/observations.py",
+        "src/supermimic/eval/benchmark.py",
+        "src/supermimic/imagination/policy_trainer.py"
+      ],
+      "readme_available": true,
+      "category": "重点",
+      "claim": "自报BONES 0.9305，46/129491；发布真机舞蹈模型",
+      "review_note": "LAFAN e2/e3表沿袭Cuboi；当前eval仍已执行步分母；主结果硬件/耗时未列。"
+    },
+    {
+      "supplemental": true,
+      "repo": "lzyang2000/morphmimic",
+      "head_sha": "2e35049e9519e511889ef987e4acde55d4f5b017",
+      "commit_utc": "2026-10-24T22:47:48Z",
+      "tree_files": 213,
+      "tree_truncated": false,
+      "read_files": [
+        "README.md",
+        "src/morphmimic/env/observations.py",
+        "src/morphmimic/model/policy.py",
+        "src/morphmimic/train/imagination.py"
+      ],
+      "readme_available": true,
+      "category": "补充",
+      "claim": "多本体共享WM/策略、真实G1部署报告",
+      "review_note": "按正文链接补入；LayerNorm/value clip/bf16/避片尾/延迟随机化；非原设置复现。"
+    }
+  ]
+}

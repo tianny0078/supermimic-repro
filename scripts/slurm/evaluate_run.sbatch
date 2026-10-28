@@ -7,4 +7,4 @@
 #SBATCH --time=00:30:00
 set -euo pipefail
 source "${SLURM_SUBMIT_DIR}/scripts/slurm/runtime.sh"
-exec "$SUPERMIMIC_PYTHON" scripts/eval_run.py "$@"
+"$SUPERMIMIC_PYTHON" scripts/eval_run.py "$@"

@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-28",
+  "timezone": "America/Los_Angeles",
+  "run": "lafan1-ori6-current-full-state-seed0",
+  "state": "queued",
+  "source_revision": "5c0a006296f5db6bc91c82320c190d31263210af",
+  "hypothesis": "Append current reference-to-robot torso orientation (6D) to the unchanged 680-value reference goal.",
+  "controls": {
+    "seed": 0,
+    "proprioception": 930,
+    "goal": 686,
+    "critic": "full state, no extra root-error features",
+    "environments": 4096,
+    "wm_window": 8,
+    "imagination_horizon": 32,
+    "precision": "float32/TF32",
+    "reset_noise": false,
+    "training_budget_hours": 3,
+    "iteration_semantics": "simulator collection steps",
+    "utd": 0.4,
+    "evaluation_protocol": "full-reference-v1"
+  },
+  "baseline": {
+    "train_job": 742,
+    "evaluation_job": 743,
+    "best_collection_steps": 32000,
+    "best_update_groups": 12784,
+    "macro_return": 0.5699200117899289,
+    "failed": 3,
+    "clips": 40
+  },
+  "validation": {
+    "cpu_targeted_tests": 10,
+    "cpu_result": "passed",
+    "shell_syntax": "passed",
+    "diff_whitespace": "passed",
+    "first_gpu_attempt": {
+      "job": 2322,
+      "source_revision": "28e2fcd3f9dadf0dc435312e188597252fbbdd40",
+      "passed": 40,
+      "failed": 1,
+      "skipped": 4,
+      "cause": "Training environment did not receive the orientation flag, giving 680 instead of 686 goal values; corrected. Raw-CSV test inputs were absent from staged scratch; now included for tests.",
+      "completed_checks": "Simulator orientation matches independent mjlab implementation; imagined orientation matches predicted FK rotation matrices, with live finite orientation gradients and no horizontal-translation gradient."
+    },
+    "corrected_gpu_regression": {
+      "job": 2370,
+      "state": "pending_resources"
+    }
+  },
+  "jobs": [
+    {
+      "id": 2370,
+      "kind": "gpu_regression",
+      "cpus": 4,
+      "memory_gib": 24,
+      "gpus": 1,
+      "time_limit": "00:15:00",
+      "state": "pending_resources"
+    },
+    {
+      "id": 2371,
+      "kind": "full_scale_240_step_pilot",
+      "afterok": 2370,
+      "cpus": 8,
+      "memory_gib": 64,
+      "gpus": 1,
+      "time_limit": "00:20:00",
+      "state": "pending_dependency"
+    },
+    {
+      "id": 2372,
+      "kind": "three_hour_training",
+      "afterok": 2371,
+      "cpus": 8,
+      "memory_gib": 64,
+      "gpus": 1,
+      "time_limit": "03:30:00",
+      "state": "pending_dependency"
+    },
+    {
+      "id": 2373,
+      "kind": "all_checkpoint_40_motion_evaluation",
+      "afterok": 2372,
+      "cpus": 4,
+      "memory_gib": 24,
+      "gpus": 1,
+      "time_limit": "00:30:00",
+      "state": "pending_dependency"
+    }
+  ],
+  "output_root": "/mnt/data/tianyuan/supermimic-repro",
+  "run_directory": "/mnt/data/tianyuan/supermimic-repro/runs/lafan1-ori6-current-full-state-seed0",
+  "limits": "No new orientation-goal convergence result yet. Single seed, current orientation only; not a reconstruction of every community setting or proof of the authors' g_t."
+}

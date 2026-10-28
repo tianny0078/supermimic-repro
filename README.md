@@ -2,11 +2,11 @@
 
 Paper-driven reproduction of [SuperMimic](https://arxiv.org/abs/2610.28480) on Unitree G1, initially using all 40 LAFAN1 clips.
 
-Work in progress. No independently measured convergence result is claimed yet. The implementation starts from the MIT-licensed [CuboiLeo/SuperMimic-Reproduced](https://github.com/CuboiLeo/SuperMimic-Reproduced) baseline; see `NOTICE.md` for provenance and `docs/paper-contract.md` for paper settings and unresolved choices.
+Work in progress. The first three-hour reference-only run reached 0.569920 full-reference return with 3/40 failed clips at its best evaluated checkpoint, below the 0.82 target. The implementation starts from the MIT-licensed [CuboiLeo/SuperMimic-Reproduced](https://github.com/CuboiLeo/SuperMimic-Reproduced) baseline; see `NOTICE.md` for provenance and `docs/paper-contract.md` for paper settings and unresolved choices.
 
 All GPU simulation, tests, training and evaluation on the development server must run through Slurm. CPU data conversion does not need a GPU.
 
-Validation on 2026-10-23: **38 GPU tests passed**; the full-scale pilot and JSON evaluation flow completed. A first three-hour reference-only/full-state-critic training run is in progress. These are pipeline checks, not a converged reproduction claim. See [recorded evidence](experiments/2026-10-23/validation.json).
+Validation on 2026-10-23: **38 GPU tests passed**; the full-scale pilot and JSON evaluation flow completed. The first reference-only/full-state-critic run and evaluation finished (Slurm 742/743). See [experiment results](docs/experiments.md) and [implementation comparison](docs/implementation-comparison.zh-CN.md) for the current orientation-only ablation.
 
 ## Install and data
 
@@ -17,7 +17,7 @@ bash scripts/setup.sh
 bash scripts/prepare_lafan1.sh
 ```
 
-The pinned source release has 40 CSV clips (30 Hz). Downloads are checked against source object hashes and recorded in a SHA256 manifest; conversion produces a 50 Hz library. Raw shared data defaults to `/mnt/data/datasets/lafan1_g1/raw`. Environments, caches, converted data and outputs default to `/mnt/data/$USER/`. Override the variables documented in the scripts on another machine. No dataset or checkpoint is included in Git. See `NOTICE.md` for data licensing.
+The pinned source release has 40 CSV clips (30 Hz). Downloads are checked against source object hashes and recorded in a SHA256 manifest; conversion produces a 50 Hz library. Raw shared data defaults to `/mnt/data/datasets/lafan1_g1/raw`; converted data and outputs live under `/mnt/data/$USER/`. Environments and compilation caches use `/home/$USER/` on NVMe. Slurm jobs stage frozen source and LAFAN1 inputs in per-job `/dev/shm` scratch (counted in host RAM) and clean it on exit. Override the variables documented in the scripts on another machine. No dataset or checkpoint is included in Git. See `NOTICE.md` for data licensing.
 
 ## Tests and pilot on the development server
 
@@ -33,7 +33,7 @@ The submission helper requires a clean local commit and freezes it before queuei
 The pilot keeps the paper's 4096 environments, network widths, k=8, H=32 and optimizer batches; it runs 240 iterations. It is a correctness/throughput check, not a convergence experiment. GPU tests also include a smaller end-to-end training and resume check. CPU-only tests can run with:
 
 ```bash
-CUDA_VISIBLE_DEVICES='' /mnt/data/$USER/supermimic-repro-env/bin/python -m pytest -q
+CUDA_VISIBLE_DEVICES='' /home/$USER/.venvs/supermimic-repro/bin/python -m pytest -q
 ```
 
 ## Train and evaluate
@@ -48,7 +48,9 @@ python3 scripts/submit_experiment.py evaluate-run --afterok TRAIN_JOB_ID \
   --run-dir /mnt/data/$USER/supermimic-repro/runs/lafan1-reference-full-state-seed0
 ```
 
-Default actor proprioception is 93 dimensions per frame, history 10. The paper leaves exact future-goal encoding unclear; the default reference-only goal and optional `--anchor-goal` hypothesis must remain separately labelled. Evaluation reports all 40 clips from their first-frame reset, full-reference normalized returns, failure counts and per-clip details. Early failure contributes zero over the unplayed suffix.
+Default actor proprioception is 93 dimensions per frame, history 10. The paper leaves exact future-goal encoding unclear. The default goal is reference-only (680 values); `--orientation-goal` appends only current reference-to-robot torso rotation (6 values, total 686), while `--anchor-goal` appends position and rotation (9, total 689). These flags are mutually exclusive and results remain separately labelled. Evaluation reports all 40 clips from their first-frame reset, full-reference normalized returns, failure counts and per-clip details. Early failure contributes zero over the unplayed suffix.
+
+For the orientation-only ablation, use a fresh run, for example `train --orientation-goal --name lafan1-ori6-current-full-state-seed0 --max-hours 3 --time 03:30:00`. Keep the remaining settings fixed; this is an explicit goal hypothesis, not a claim that the authors used this encoding. Checkpoint evaluation and playback recover the selected goal from the saved config.
 
 The default critic receives the full 71-value state; the actor's 93-value proprioception is unchanged. See [goal observability](docs/goal-observability.md) for the unresolved global-drift feedback issue in the reference-only goal.
 

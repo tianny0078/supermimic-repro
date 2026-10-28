@@ -23,11 +23,15 @@ class Experiment:
     # Alternative interpretation of underspecified goal encoding. Explicitly
     # labelled in configuration; never switched on to silently improve a score.
     anchor_goal: bool = False
+    orientation_goal: bool = False
 
     def config(self) -> TrainConfig:
         cfg = TrainConfig(run_name=self.name, log_root=self.output, seed=self.seed, resume=self.resume)
         cfg.data.npz_dir = self.data
         cfg.env.anchor_obs = self.anchor_goal
+        cfg.env.anchor_orientation = self.orientation_goal
+        from supermimic.goal_spec import goal_dim
+        cfg.policy.goal_dim = goal_dim(cfg.env.future_frames, self.anchor_goal, self.orientation_goal)
         cfg.env.reset_noise = False  # Initial-state perturbation ranges not specified by paper.
         cfg.critic.root_error_features = False
         cfg.schedule.max_hours = self.max_hours

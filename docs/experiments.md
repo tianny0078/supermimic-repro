@@ -36,3 +36,26 @@ GitHub reauthorization succeeded. README initialization and complete source publ
 - Initial health check passed 200 iterations with finite metrics/gradients, approximately 3.5 it/s and 17.6 GiB peak Torch allocation. The memory figure excludes Warp/driver allocations. It does not establish convergence.
 - Slurm **743**: queued after successful training to evaluate final/periodic checkpoints and write an evaluation index.
 - Machine-readable evidence is in `experiments/2026-10-23/validation.json`; live metrics/checkpoints are under the output run directory and are not committed.
+
+## 2026-10-25: completed run and community comparison
+
+Slurm **742** training and **743** evaluation have completed. The run `lafan1-reference-full-state-seed0` reached its three-hour budget at 32150 collection steps / 12844 update groups. All 643 training metric records were finite. Its source SHA256 is `8e93b3bbfe1abfb21b5fccd12e38985d33f8ac492289fb85b122ebcdfb309f93`; dataset SHA256 is `39e17fa7ced964ec04cb226a7ad9b1b206c26cacf096daa82c5ecd5b4ebe1f83`.
+
+| Checkpoint | Collection steps | Update groups | Full-reference macro return | Failed / 40 |
+|---|---:|---:|---:|---:|
+| Best evaluated | 32000 | 12784 | 0.569920 | 3 |
+| Final | 32150 | 12844 | 0.545565 | 7 |
+
+The best checkpoint's reference-length-weighted return is 0.577598. It completed 37 motions; failures were `fallAndGetUp1_subject4`, `fallAndGetUp1_subject5`, and `fallAndGetUp2_subject3`. These results do not reach the paper's 0.82 target. The best checkpoint SHA256 is `290cf8ca3c8f2949d07eaf06a8e20e5d5ef232d74ba27bf08b19666eeff833a2`. Full inspection artifacts are retained under `/mnt/data/tianyuan/supermimic-repro/reports/reference-full-state-seed0/`; checkpoints and per-clip reports remain in the run directory.
+
+The [community code audit](community-code-audit.zh-CN.md) records 53 GitHub search matches plus MorphMimic, separates full-reference versus executed-step return, and identifies current/per-future-frame relative orientation as distinct goal hypotheses. The current pure-reference goal must not be described as the only paper-compatible interpretation. No new orientation-goal training was launched during this review.
+
+## 2026-10-28: orientation-only implementation and queued experiment
+
+Added `--orientation-goal`: append only six current reference-to-robot torso rotation values to the original 680-value goal. Proprioception remains 930, with no robot-position feedback. Simulation and imagined rollouts use the same rotation convention; imagination recomputes it from predicted FK poses without detaching state gradients. Evaluation and playback restore this mode from the checkpoint. The legacy nine-value `--anchor-goal` remains separate; conflicting flags fail before startup. No other learning, physics or reward settings were changed for the ablation. See the [implementation comparison](implementation-comparison.zh-CN.md).
+
+Ten targeted CPU checks passed, as did shell syntax and diff checks. Slurm **2322**, source `28e2fcd`, passed 40 tests, failed one and skipped four: end-to-end orientation training exposed a missing flag forwarded to the environment (680-vs-686 input mismatch); raw-CSV conversion tests were skipped because staging only copied converted inputs. Both issues were corrected in source **`5c0a006296f5db6bc91c82320c190d31263210af`**. The first attempt is not counted as a passing suite. Its simulator-vs-mjlab rotation, imagined-vs-FK rotation, and orientation/translation gradient checks passed.
+
+The corrected frozen source is queued through Slurm: **2370** regression → **2371** full-scale 240-collection-step pilot → **2372** fresh three-hour `lafan1-ori6-current-full-state-seed0` training → **2373** final/periodic checkpoint evaluation on all 40 motions. Each dependency requires successful completion. At submission, regression was pending for resources and the later jobs were pending dependencies; no orientation convergence score is available. Machine-readable setup and job/resource details are in [orientation-ablation.json](../experiments/2026-10-28/orientation-ablation.json).
+
+Current server storage rules require environments/caches on NVMe and repeated job input reads in fast scratch. The same installed Python 3.12.15/packages were copied to `/home/tianyuan/.venvs/supermimic-repro`, with managed Python on NVMe. Slurm stages source/converted motions (plus raw CSVs for tests) in a unique job RAM directory and removes it on exit. Weights, logs and final reports remain on bulk storage. Baseline artifacts were retained.

@@ -2,6 +2,8 @@
 
 The paper specifies 93 proprioceptive values per frame and ten future reference frames as `g_t`, but does not enumerate the coordinates used for those future targets. Therefore our reference-only and relative-goal variants are hypotheses, not known author settings.
 
+The [2026-10-25 community code audit](community-code-audit.zh-CN.md) distinguishes three further choices: current relative orientation (six values), relative orientation in each future frame, and relative position plus orientation. Several high-scoring implementations preserve the 93-value proprioception while putting relative orientation in `g_t`. Thus 93-value proprioception does not require a reference-only goal, and an orientation-only experiment need not use the current nine-value position/orientation option. Community labels such as `paper` or `beyondmimic_seq` do not establish the authors' exact goal representation. Current orientation feedback is implemented as `--orientation-goal`; its corrected validation/training chain is queued as of 2026-10-28. No convergence result is available yet. Per-future-frame relative orientation remains unimplemented.
+
 ## A limitation of the default 68-value reference encoding
 
 The default reference-only goal contains joint position/velocity, projected gravity, body angular velocity, heading-frame linear velocity and root height. It contains no global reference XY/yaw or reference-to-robot pose error.

@@ -158,7 +158,41 @@ def test_termination_matches_env(setup):
         assert torch.equal((f[:, 1].abs() > 0.8), theirs_t) or (f[:, 1].abs() - 0.8).abs().min() < 1e-4
 
 
-def test_anchor_relative_obs_matches_env():
+def test_imagined_orientation_recomputed_from_predicted_torso(setup):
+    from supermimic.imagination.rollout import imagine
+    from supermimic.kinematics.rotations import matrix_from_quat
+    from supermimic.policy.nets import Policy, PolicyCfg
+    from supermimic.world_model.world_model import WorldModel, WorldModelCfg
+
+    env, heads = setup["env"], setup["heads"]
+    env.reset()
+    for _ in range(12):
+        env.step(torch.zeros(env.num_envs, 29, device=env.device))
+    start = env.recorder_manager.get_term("replay").buffer.sample_starts(8, 10)
+    start.state = start.state.detach().clone().requires_grad_(True)
+    lib = env.command_manager.get_term("motion").library
+    wm = WorldModel(WorldModelCfg(hidden=(32, 32)), heads, env.device)
+    wm.requires_grad_(False)
+    policy = Policy(PolicyCfg(encoder_hidden=(32,), decoder_hidden=(32,), goal_dim=686)).to(env.device)
+    ro = imagine(wm, policy, lib, start, horizon=3, obs_noise=False, anchor_orientation=True)
+    assert ro.goals.shape == (4, 8, 686)
+    for t in range(4):
+        robot = heads.robot_bodies(ro.states[t])
+        ref = lib.bodies(ro.frames[t])
+        robot_R = matrix_from_quat(robot["quat"][:, heads.anchor_index])
+        reference_R = matrix_from_quat(ref.quat_w[:, heads.anchor_index])
+        expected = (robot_R.transpose(-1, -2) @ reference_R)[..., :2].reshape(8, 6)
+        torch.testing.assert_close(ro.goals[t, :, 680:], expected, atol=3e-5, rtol=1e-5)
+        torch.testing.assert_close(ro.goals[t, :, :680], lib.goal_window(ro.frames[t], 10))
+    gradient, = torch.autograd.grad(ro.goals[-1, :, 680:].sum(), start.state)
+    assert torch.isfinite(gradient).all()
+    assert gradient[:, 3:7].abs().sum() > 0
+    # Absolute horizontal translation cannot enter this orientation-only goal.
+    torch.testing.assert_close(gradient[:, :2], torch.zeros_like(gradient[:, :2]))
+
+
+@pytest.mark.parametrize("orientation_only", [False, True])
+def test_anchor_relative_obs_matches_env(orientation_only):
     """The analytic anchor-relative term (from state via FK) equals mjlab's observation terms."""
     from supermimic.data.motion_convert import load_g1_model
     from supermimic.envs import SuperMimicEnvCfgArgs, make_env
@@ -166,17 +200,19 @@ def test_anchor_relative_obs_matches_env():
     from supermimic.envs.state_io import StateIO
     from supermimic.envs.tracking_env_cfg import ANCHOR_BODY, ROOT_BODY, TRACKED_BODIES
     from supermimic.kinematics.g1_fk import G1Kinematics
-    from supermimic.world_model.heads import AnalyticHeads, anchor_relative_obs
+    from supermimic.world_model.heads import AnalyticHeads, anchor_orientation_obs, anchor_relative_obs
+    from mjlab.tasks.tracking import mdp as track_mdp
 
     files = discover_npz(NPZ, names=["walk1_subject1"])
-    env = make_env(SuperMimicEnvCfgArgs(npz_files=[str(f) for f in files], num_envs=8, obs_noise=False, anchor_obs=True, record_transitions=False, seed=4), "cuda:0")
+    env = make_env(SuperMimicEnvCfgArgs(npz_files=[str(f) for f in files], num_envs=8, obs_noise=False, anchor_obs=not orientation_only, anchor_orientation=orientation_only, record_transitions=False, seed=4), "cuda:0")
     torch.backends.cuda.matmul.allow_tf32 = False
     try:
         robot = env.scene["robot"]
         heads = AnalyticHeads(G1Kinematics(load_g1_model(), device=env.device), TRACKED_BODIES, ANCHOR_BODY, ROOT_BODY, robot.data.soft_joint_pos_limits[0].clone(), robot.data.default_joint_pos[0].clone())
         io = StateIO(env)
         obs, _ = env.reset()
-        assert obs["goal"].shape == (8, 689)
+        assert obs["policy"].shape == (8, 930)
+        assert obs["goal"].shape == (8, 686 if orientation_only else 689)
         cmd = env.command_manager.get_term("motion")
         for _ in range(5):
             obs, *_ = env.step(0.3 * torch.randn(8, 29, device=env.device))
@@ -184,7 +220,12 @@ def test_anchor_relative_obs_matches_env():
             b = heads.robot_bodies(s)
             ai = heads.anchor_index
             ref = _ref_from_command(cmd)
-            ours = anchor_relative_obs(b["pos"][:, ai], b["quat"][:, ai], ref.body_pos_w[:, ai], ref.body_quat_w[:, ai])
+            if orientation_only:
+                ours = anchor_orientation_obs(b["quat"][:, ai], ref.body_quat_w[:, ai])
+                # Independent mjlab implementation, beyond the shared analytic helper.
+                torch.testing.assert_close(obs["goal"][:, -6:], track_mdp.motion_anchor_ori_b(env, "motion"))
+            else:
+                ours = anchor_relative_obs(b["pos"][:, ai], b["quat"][:, ai], ref.body_pos_w[:, ai], ref.body_quat_w[:, ai])
             np.testing.assert_allclose(ours.cpu().numpy(), obs["goal"][:, 680:].cpu().numpy(), atol=3e-5)
     finally:
         env.close()

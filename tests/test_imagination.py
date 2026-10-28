@@ -31,13 +31,15 @@ def test_gae_targets_match_hand_computation():
 
 
 @pytest.mark.skipif(not torch.cuda.is_available() or not NPZ.exists(), reason="needs CUDA + LAFAN1 npz")
-def test_training_smoke(tmp_path):
+@pytest.mark.parametrize("orientation_only", [False, True])
+def test_training_smoke(tmp_path, orientation_only):
     from supermimic.config import TrainConfig
     from supermimic.training.loop import Trainer
 
     cfg = TrainConfig(run_name="smoke", log_root=tmp_path, seed=1)
     cfg.data.clips = ["walk1_subject1"]
     cfg.env.num_envs = 128
+    cfg.env.anchor_orientation = orientation_only
     cfg.env.replay_capacity = 200
     cfg.world_model.hidden = (256, 256)
     cfg.policy.encoder_hidden = (256, 128)

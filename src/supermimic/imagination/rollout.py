@@ -10,7 +10,8 @@ from supermimic.data.replay_buffer import StartBatch
 from supermimic.envs.mdp.motion_library import MotionLibrary
 from supermimic.imagination.compiled import REWARD_TERM_NAMES, ImagStep
 from supermimic.policy.nets import Policy
-from supermimic.world_model.heads import ReferenceFrame, analytic_observation, anchor_relative_obs, flatten_history_term_major
+from supermimic.world_model.heads import ReferenceFrame, analytic_observation, anchor_orientation_obs, anchor_relative_obs, flatten_history_term_major
+from supermimic.goal_spec import feedback_dim
 from supermimic.world_model.wm_trainer import reference_at
 from supermimic.world_model.world_model import WorldModel
 
@@ -42,7 +43,9 @@ def imagine(
     obs_noise: bool = True,
     step_fn: ImagStep | None = None,
     anchor_obs: bool = False,
+    anchor_orientation: bool = False,
 ) -> ImagRollout:
+    feedback_dim(anchor_obs, anchor_orientation)
     device = start.state.device
     n = start.state.shape[0]
     q0 = lib.default_joint_pos
@@ -58,11 +61,14 @@ def imagine(
 
     def make_goal(frame_t, ref_t, anchor_pose):
         g = lib.goal_window(frame_t, future_frames)
-        if not anchor_obs:
+        if not (anchor_obs or anchor_orientation):
             return g
-        rel = anchor_relative_obs(anchor_pose[..., 0:3], anchor_pose[..., 3:7], ref_t.body_pos_w[..., ai, :], ref_t.body_quat_w[..., ai, :])
+        if anchor_orientation:
+            rel = anchor_orientation_obs(anchor_pose[..., 3:7], ref_t.body_quat_w[..., ai, :])
+        else:
+            rel = anchor_relative_obs(anchor_pose[..., 0:3], anchor_pose[..., 3:7], ref_t.body_pos_w[..., ai, :], ref_t.body_quat_w[..., ai, :])
         if obs_noise:
-            rel = rel + (torch.rand_like(rel) * 2 - 1) * anchor_noise_half
+            rel = rel + (torch.rand_like(rel) * 2 - 1) * (anchor_noise_half[3:] if anchor_orientation else anchor_noise_half)
         return torch.cat([g, rel], dim=-1)
 
     # Initial observation history from the logged states/actions (noise re-sampled per frame).
@@ -86,7 +92,7 @@ def imagine(
         return ReferenceFrame(ref_all.body_pos_w[sl], ref_all.body_quat_w[sl], ref_all.body_lin_vel_w[sl], ref_all.body_ang_vel_w[sl], ref_all.root_pos_w[sl], ref_all.root_quat_w[sl])
 
     ref = ref_at(0)
-    if anchor_obs:
+    if anchor_obs or anchor_orientation:
         b0 = wm.heads.robot_bodies(s)
         anchor_pose = torch.cat([b0["pos"][..., ai, :], b0["quat"][..., ai, :]], dim=-1)
     else:

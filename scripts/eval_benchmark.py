@@ -32,10 +32,11 @@ def main(ckpt: Path, npz_dir: Path = Path("data/npz/lafan1"), clips: list[str] |
     metadata["checkpoint"] = ckpt
     metadata["checkpoint_sha256"] = sha256_file(ckpt)
     metadata["checkpoint_iteration"] = checkpoint_info["iteration"]
+    metadata["checkpoint_updates"] = checkpoint_info["updates"]
     metadata["train_elapsed_s"] = checkpoint_info["elapsed_train_s"]
     metadata["training_manifest"] = checkpoint_info["manifest"]
     metadata["train_config"] = cfg
-    results = run_benchmark(policy, files, device=device, num_envs=num_envs, future_frames=cfg["env"]["future_frames"], anchor_obs=cfg["env"].get("anchor_obs", False))
+    results = run_benchmark(policy, files, device=device, num_envs=num_envs, future_frames=cfg["env"]["future_frames"], anchor_obs=cfg["env"].get("anchor_obs", False), anchor_orientation=cfg["env"].get("anchor_orientation", False))
     s = summarize(results)
     print(f"\n{s['clips']} clips | failed {s['failed']} | mean norm return {s['mean_norm_return']:.4f} | reference-weighted {s['reference_weighted_norm_return']:.4f}")
     if "terms" in s:

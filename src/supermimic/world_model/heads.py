@@ -39,16 +39,19 @@ def analytic_observation(
     return torch.cat([q + bias - default_joint_pos, qd, ang_b, projected_gravity(root_quat), prev_action], dim=-1)
 
 
+def anchor_orientation_obs(robot_anchor_quat: torch.Tensor, ref_anchor_quat: torch.Tensor) -> torch.Tensor:
+    """6D reference rotation in the robot anchor frame; no robot position input."""
+    from supermimic.kinematics.rotations import matrix_from_quat, quat_inv, quat_mul
+
+    q12 = quat_mul(quat_inv(robot_anchor_quat), ref_anchor_quat)
+    return matrix_from_quat(q12)[..., :2].reshape(*q12.shape[:-1], 6)
+
+
 def anchor_relative_obs(robot_anchor_pos: torch.Tensor, robot_anchor_quat: torch.Tensor, ref_anchor_pos: torch.Tensor, ref_anchor_quat: torch.Tensor) -> torch.Tensor:
     """Reference anchor pose expressed in the robot anchor frame: [pos (3), rot6d (6)] (= mjlab's
     motion_anchor_pos_b / motion_anchor_ori_b, plan D5 alternative)."""
-    from supermimic.kinematics.rotations import matrix_from_quat, quat_inv, quat_mul
-
-    q10 = quat_inv(robot_anchor_quat)
     pos = quat_apply_inverse(robot_anchor_quat, ref_anchor_pos - robot_anchor_pos)
-    q12 = quat_mul(q10, ref_anchor_quat)
-    mat = matrix_from_quat(q12)
-    return torch.cat([pos, mat[..., :2].reshape(*q12.shape[:-1], 6)], dim=-1)
+    return torch.cat([pos, anchor_orientation_obs(robot_anchor_quat, ref_anchor_quat)], dim=-1)
 
 
 ANCHOR_OBS_DIM = 9

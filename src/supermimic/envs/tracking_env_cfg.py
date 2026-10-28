@@ -37,6 +37,7 @@ from supermimic.envs.mdp import observations as sm_obs
 from supermimic.envs.mdp import rewards as sm_reward
 from supermimic.envs.mdp import terminations as sm_term
 from supermimic.envs.mdp.commands import MultiClipMotionCommandCfg
+from supermimic.goal_spec import feedback_dim
 
 class QuietSimulationCfg(SimulationCfg):
     """SimulationCfg that disables MuJoCo Warp's per-step overflow printf (a kernel build-time constant,
@@ -89,11 +90,13 @@ class SuperMimicEnvCfgArgs:
     bin_frames: int = 50
     compact_library: bool = False
     anchor_obs: bool = False  # add BeyondMimic anchor-relative pose (9) to the goal group (plan D5 alt.)
+    anchor_orientation: bool = False  # Current torso rotation only (6), no relative position.
     debug_vis: bool = False  # draw the reference ghost in the viewer (scripts/play.py)
     extra_command_kwargs: dict = field(default_factory=dict)
 
 
 def make_env_cfg(a: SuperMimicEnvCfgArgs) -> ManagerBasedRlEnvCfg:
+    feedback_dim(a.anchor_obs, a.anchor_orientation)
     # ---------------------------------------------------------------- observations
     noise = (lambda lo, hi: Unoise(n_min=lo, n_max=hi)) if a.obs_noise else (lambda lo, hi: None)
     policy_terms = {
@@ -114,6 +117,11 @@ def make_env_cfg(a: SuperMimicEnvCfgArgs) -> ManagerBasedRlEnvCfg:
         "goal": ObservationGroupCfg(
             terms={
                 "future_frames": ObservationTermCfg(func=sm_obs.goal_future_frames, params={"command_name": "motion"}),
+                **(
+                    {"anchor_ori": ObservationTermCfg(func=sm_obs.goal_anchor_orientation, params={"command_name": "motion"}, noise=noise(-0.05, 0.05))}
+                    if a.anchor_orientation
+                    else {}
+                ),
                 **(
                     {
                         "anchor_pos": ObservationTermCfg(func=track_mdp.motion_anchor_pos_b, params={"command_name": "motion"}, noise=noise(-0.25, 0.25)),
