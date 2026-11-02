@@ -31,13 +31,14 @@ def freeze_source(repo: Path, output: Path) -> tuple[Path, str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("kind", choices=["tests", "pilot", "train", "evaluate", "evaluate-run"])
+    parser.add_argument("kind", choices=["tests", "pilot", "train", "evaluate", "evaluate-run", "render"])
     parser.add_argument("--name")
     parser.add_argument("--max-hours", type=float)
     parser.add_argument("--time", help="Explicit Slurm time limit (required for train)")
     parser.add_argument("--afterok", action="append", default=[])
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--run-dir", type=Path)
+    parser.add_argument("--video-dir", type=Path)
     parser.add_argument("--resume", type=Path)
     goals = parser.add_mutually_exclusive_group()
     goals.add_argument("--anchor-goal", action="store_true")
@@ -51,13 +52,15 @@ def main() -> None:
         parser.error("evaluate requires --checkpoint")
     if args.kind == "evaluate-run" and args.run_dir is None:
         parser.error("evaluate-run requires --run-dir")
+    if args.kind == "render" and (args.checkpoint is None or args.video_dir is None):
+        parser.error("render requires --checkpoint and --video-dir")
     repo = Path(__file__).resolve().parents[1]
     output = args.output.resolve()
     snapshot, revision = freeze_source(repo, output)
     logs = output / "logs"
     logs.mkdir(parents=True, exist_ok=True)
     script = {"tests": "tests", "pilot": "train", "train": "train",
-              "evaluate": "evaluate", "evaluate-run": "evaluate_run"}[args.kind]
+              "evaluate": "evaluate", "evaluate-run": "evaluate_run", "render": "render"}[args.kind]
     command = ["sbatch", "--parsable", f"--output={logs / (args.kind + '-%j.log')}"]
     if args.kind == "tests":
         command += ["--cpus-per-task=4", "--mem=24G"]
@@ -82,6 +85,8 @@ def main() -> None:
         command += ["--ckpt", str(args.checkpoint.resolve())]
     elif args.kind == "evaluate-run":
         command += ["--run-dir", str(args.run_dir.resolve())]
+    elif args.kind == "render":
+        command += ["--ckpt", str(args.checkpoint.resolve()), "--out-dir", str(args.video_dir.resolve())]
     environment = {**os.environ, "SUPERMIMIC_OUTPUT_ROOT": str(output)}
     record = {"revision": revision, "snapshot": str(snapshot), "kind": args.kind, "command": command,
               "submitted_utc": dt.datetime.now(dt.UTC).isoformat()}

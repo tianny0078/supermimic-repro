@@ -59,3 +59,30 @@ Ten targeted CPU checks passed, as did shell syntax and diff checks. Slurm **232
 The corrected frozen source is queued through Slurm: **2370** regression → **2371** full-scale 240-collection-step pilot → **2372** fresh three-hour `lafan1-ori6-current-full-state-seed0` training → **2373** final/periodic checkpoint evaluation on all 40 motions. Each dependency requires successful completion. At submission, regression was pending for resources and the later jobs were pending dependencies; no orientation convergence score is available. Machine-readable setup and job/resource details are in [orientation-ablation.json](../experiments/2026-10-28/orientation-ablation.json).
 
 Current server storage rules require environments/caches on NVMe and repeated job input reads in fast scratch. The same installed Python 3.12.15/packages were copied to `/home/tianyuan/.venvs/supermimic-repro`, with managed Python on NVMe. Slurm stages source/converted motions (plus raw CSVs for tests) in a unique job RAM directory and removes it on exit. Weights, logs and final reports remain on bulk storage. Baseline artifacts were retained.
+
+## Orientation-only experiment: completed results
+
+The queued sequence above subsequently completed. Frozen training source: `5c0a006296f5db6bc91c82320c190d31263210af`; source-content SHA256: `10748e166b271e71e85b29fe8e98834f36ce31fa61be0422d162e3024ee9b777`. The published orientation implementation is also represented by commit `539f69dcd0537e392766366cd79130c254aae9e8`.
+
+- Slurm **2370**: **45 regression tests passed**, no skips, 83.49 s.
+- Slurm **2371**: full-scale 240-collection-step pilot completed, 80 update groups.
+- Slurm **2372**: fresh three-hour orientation-only training, seed 0, one H200, 4096 environments, 37450 collection steps and 14964 update groups.
+- Slurm **2373**: final and periodic checkpoints evaluated on all 40 motions with `full-reference-v1`.
+
+| Configuration / checkpoint | Collection steps | Update groups | Macro return | Failed clips |
+|---|---:|---:|---:|---:|
+| Reference-only, best evaluated | 32000 | 12784 | 0.569920 | 3/40 |
+| Orientation-only, matched progress | 32000 | 12784 | 0.799138 | 2/40 |
+| Orientation-only, final | 37450 | 14964 | 0.807746 | 3/40 |
+
+The final orientation checkpoint's reference-length-weighted return is 0.809841. Failed clips: `dance1_subject1` at 107.76 s, `fallAndGetUp1_subject4` at 141.32 s, and `walk3_subject5` at 71.02 s. Final checkpoint SHA256: `1403e1ee309e5c95931f745a13c22b73e78cb643be51441c04da81e5c1ec137a`. Dataset SHA256 is unchanged from reference-only: `39e17fa7ced964ec04cb226a7ad9b1b206c26cacf096daa82c5ecd5b4ebe1f83`. Robot XML SHA256: `febdcbeffbbf84051556ae41a5ac1b43fb479a5d76bdb3f54824dbc2721c20aa`.
+
+The 749 metric records contained finite values; peak Torch allocated memory was approximately 17.64 GiB. This is a single-seed goal-encoding ablation on training motions. The final score remains below 0.82 and does not establish paper equivalence, unseen-motion generalization, a PPO speedup, BONES coverage, or real-robot readiness.
+
+Artifacts remain under `/mnt/data/tianyuan/supermimic-repro/runs/lafan1-ori6-current-full-state-seed0/`. Raw metrics, weights, motion data, and generated videos are not committed to Git.
+
+## Simulator recordings and November 1 source audit
+
+Recorder implementation: `c00a98a1934fec59496486a152cd7a96b45f45be`. Slurm **2422** recorded actual closed-loop policy rollouts and rendered comparison videos with the same final orientation checkpoint and motion library. The 48.16 s highlights contain selected excerpts, not complete-motion validation. A separate 11.08 s diagnostic shows the first tracking failure in that fresh replay, `dance1_subject1` at 107.44 s, and holds the true terminal pose for one second. Its timestamp can differ from the original benchmark because of floating-point simulation variation. Reference global XY/yaw is preserved in the comparison videos.
+
+The [English star-ranked source audit](top3-code-audit-2026-11-01.en.md), [Chinese report](top3-code-audit-2026-11-01.zh-CN.md), and [evidence index](top3-code-audit-2026-11-01.json) document implementation gaps and limited isolated CPU checks. The [English follow-up plan](reproduction-plan.en.md) records acceptance gates. **New GPU execution is on hold at the user's request.** This documentation update schedules no work and adds no new training result.

@@ -2,11 +2,19 @@
 
 Paper-driven reproduction of [SuperMimic](https://arxiv.org/abs/2610.28480) on Unitree G1, initially using all 40 LAFAN1 clips.
 
-Work in progress. The first three-hour reference-only run reached 0.569920 full-reference return with 3/40 failed clips at its best evaluated checkpoint, below the 0.82 target. The implementation starts from the MIT-licensed [CuboiLeo/SuperMimic-Reproduced](https://github.com/CuboiLeo/SuperMimic-Reproduced) baseline; see `NOTICE.md` for provenance and `docs/paper-contract.md` for paper settings and unresolved choices.
+Work in progress. The three-hour current-orientation run reached **0.807746 full-reference return, with 3/40 failed clips**. At matched progress (32000 collection steps / 12784 updates), it scored 0.799138 versus 0.569920 for reference-only. Both are single-seed training-library results, below the paper's 0.82 LAFAN1 target. The implementation starts from the MIT-licensed [CuboiLeo/SuperMimic-Reproduced](https://github.com/CuboiLeo/SuperMimic-Reproduced) baseline; see [NOTICE.md](NOTICE.md) for provenance and the [paper contract](docs/paper-contract.md) for explicit settings and unresolved choices.
 
 All GPU simulation, tests, training and evaluation on the development server must run through Slurm. CPU data conversion does not need a GPU.
 
-Validation on 2026-10-23: **38 GPU tests passed**; the full-scale pilot and JSON evaluation flow completed. The first reference-only/full-state-critic run and evaluation finished (Slurm 742/743). See [experiment results](docs/experiments.md) and [implementation comparison](docs/implementation-comparison.zh-CN.md) for the current orientation-only ablation.
+The corrected orientation source passed **45 GPU regression tests** in Slurm 2370; pilot, training and complete checkpoint evaluation finished in jobs 2371–2373. The earlier reference-only run used jobs 742/743. See [experiment results](docs/experiments.md) for the measured scope and identities. New GPU work is currently **on hold at the user's request**; publishing documentation does not start jobs.
+
+## Audit and next steps
+
+- [English source audit: top three repositories by GitHub stars](docs/top3-code-audit-2026-11-01.en.md) — pinned November 1 snapshot, implementation gaps, metric differences, and evidence links.
+- [English implementation and validation plan](docs/reproduction-plan.en.md) — phased work, acceptance gates, controlled comparisons, and execution status.
+- [Chinese audit](docs/top3-code-audit-2026-11-01.zh-CN.md) and [machine-readable evidence](docs/top3-code-audit-2026-11-01.json).
+
+The audit identifies missing input-parity profiles, normalization, WM-only warm-up, critic features, clip-end rules, and packed-library evaluation. These are findings and planned work, not newly implemented improvements. It also explains why some community scores cannot be directly compared with our complete-reference metric.
 
 ## Install and data
 

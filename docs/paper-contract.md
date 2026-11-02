@@ -1,6 +1,6 @@
 # Paper contract and implementation decisions
 
-This is an unofficial reproduction, adapted from CuboiLeo/SuperMimic-Reproduced (MIT). The objective is to match every explicit paper setting and expose choices the paper does not specify. A matching score alone is not sufficient evidence of reproduction. No convergence claim has been verified here yet.
+This is an unofficial reproduction, adapted from CuboiLeo/SuperMimic-Reproduced (MIT). The objective is to match every explicit paper setting and expose choices the paper does not specify. A matching score alone is not sufficient evidence of reproduction. The completed single-seed orientation-only run reached 0.807746 on LAFAN1, below the paper's 0.82 target; see [measured results](experiments.md), the [English code audit](top3-code-audit-2026-11-01.en.md), and the [follow-up plan](reproduction-plan.en.md). New GPU execution remains on hold.
 
 Source: [paper v1](https://arxiv.org/pdf/2610.28480), sections 3, 4, Appendices A–F. Community implementation comparisons are in `community-review.zh-CN.md`; their numbers are external reports and may use different metrics.
 

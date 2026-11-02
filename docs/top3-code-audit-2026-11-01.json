@@ -1,0 +1,479 @@
+{
+  "display_date": "2026-11-01",
+  "display_timezone": "America/Los_Angeles",
+  "query": "https://api.github.com/search/repositories?q=supermimic&sort=stars&order=desc&per_page=100",
+  "fetched_utc": "2026-11-02T04:07:38.711819+00:00",
+  "total_matches": 119,
+  "returned_count": 100,
+  "include_forks_check": "search-forks.json",
+  "hyphen_check": "search-hyphen.json",
+  "excluded_higher_star_non_implementation": {
+    "repo": "miao-org/awesome-supermimic",
+    "stars": 420,
+    "reason": "resource index"
+  },
+  "top3": [
+    {
+      "repo": "zita-ch/supermimic_vibed",
+      "stars": 770,
+      "sha": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "default_branch": "main",
+      "commit_date": "2026-10-31T23:13:30Z",
+      "fetched_utc": "2026-11-02T04:07:57.304716+00:00"
+    },
+    {
+      "repo": "CuboiLeo/SuperMimic-Reproduced",
+      "stars": 356,
+      "sha": "ba6105349069bf040f1fdad60873d13138d505a2",
+      "default_branch": "main",
+      "commit_date": "2026-10-26T21:21:02Z",
+      "fetched_utc": "2026-11-02T04:07:57.404149+00:00"
+    },
+    {
+      "repo": "Motphys/Uni-SuperMimic",
+      "stars": 220,
+      "sha": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "default_branch": "main",
+      "commit_date": "2026-10-31T07:37:42Z",
+      "fetched_utc": "2026-11-02T04:07:57.389690+00:00"
+    }
+  ],
+  "local_revision": "c00a98a1934fec59496486a152cd7a96b45f45be",
+  "measured_orientation_training_revision": "5c0a006296f5db6bc91c82320c190d31263210af",
+  "downloaded_text_files": 148,
+  "raw_snapshot_root": "/mnt/data/tianyuan/supermimic-repro/audits/top3-2026-11-01",
+  "raw_file_hashes": "retrieved-files.json",
+  "evidence": {
+    "z-results": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "MILESTONES.md",
+      "line": 21,
+      "sha256": "95f9189268c3878160995412b503ef240389479c21b7ad011823e6fc24f04e09",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/MILESTONES.md#L21"
+    },
+    "z-eval": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/evaluate.py",
+      "line": 84,
+      "sha256": "5b8923a8c46dcbf2b19e048729ab0039b9ffe1a45777f83eb355df14b245bb36",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/evaluate.py#L84"
+    },
+    "c-results": {
+      "repository": "CuboiLeo/SuperMimic-Reproduced",
+      "commit": "ba6105349069bf040f1fdad60873d13138d505a2",
+      "path": "README.md",
+      "line": 9,
+      "sha256": "6b29da73c4fcafec974b0d649efbaa9df0fd4e4bfc9f30a04f4d0565e5d3ffa9",
+      "url": "https://github.com/CuboiLeo/SuperMimic-Reproduced/blob/ba6105349069bf040f1fdad60873d13138d505a2/README.md#L9"
+    },
+    "c-eval": {
+      "repository": "CuboiLeo/SuperMimic-Reproduced",
+      "commit": "ba6105349069bf040f1fdad60873d13138d505a2",
+      "path": "src/supermimic/eval/benchmark.py",
+      "line": 97,
+      "sha256": "81ab68c56d09864e6f4dc4ca1e5c56df16d4c81d1dd54570e05462a7f8b96940",
+      "url": "https://github.com/CuboiLeo/SuperMimic-Reproduced/blob/ba6105349069bf040f1fdad60873d13138d505a2/src/supermimic/eval/benchmark.py#L97"
+    },
+    "u-results": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "README.md",
+      "line": 254,
+      "sha256": "b313db423cfac780adc5276178f56f61f84be50aafa72fdda9bdf6d7dcff1e11",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/README.md#L254"
+    },
+    "u-eval": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/tasks/motion_tracking/g1/supermimic/evaluate.py",
+      "line": 82,
+      "sha256": "e71719b36c3953414ea6370a9bdefcefd561a182f7ddc6b395cc1e2aa217b466",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/tasks/motion_tracking/g1/supermimic/evaluate.py#L82"
+    },
+    "u-config": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/conf/supermimic/config.yaml",
+      "line": 27,
+      "sha256": "03407ad63cac326e18fdfc7794e50e3d6b8b1ef7b46d5b9675ffdd346b77b415",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/conf/supermimic/config.yaml#L27"
+    },
+    "u-checkpoint": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/learner.py",
+      "line": 571,
+      "sha256": "d710f22b12e45509b0e9c79bebaf643c89f861ebcfea6583a1588db35e5d1949",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/learner.py#L571"
+    },
+    "z-obs": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/mdp.py",
+      "line": 95,
+      "sha256": "19662edc4d994553ebb4cf587f3080ca95b407e53806f7cd28939937e135754f",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/mdp.py#L95"
+    },
+    "z-goal": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/motion.py",
+      "line": 100,
+      "sha256": "f6c60b608de50f86556bd42e9c67d172f5955cdc48c8a8a902e9b86bfecdad58",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/motion.py#L100"
+    },
+    "u-goal": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/tasks/motion_tracking/g1/supermimic/motion.py",
+      "line": 296,
+      "sha256": "44311924a71c37f9372e8a4ca3c0d39e7bef124618882b3ba68c0492a7886b1a",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/tasks/motion_tracking/g1/supermimic/motion.py#L296"
+    },
+    "o-goal": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/envs/mdp/motion_library.py",
+      "line": 226,
+      "sha256": "359261b2330b8eb5961559e27ac105e053643c780a0ec91085354637c7ede966",
+      "url": "../src/supermimic/envs/mdp/motion_library.py#L226"
+    },
+    "o-imagine": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/imagination/rollout.py",
+      "line": 36,
+      "sha256": "7a5417dfed891820c8f4be817f66fd5cb69e801eee8f807dca00991af920e9c6",
+      "url": "../src/supermimic/imagination/rollout.py#L36"
+    },
+    "o-policy": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/policy/nets.py",
+      "line": 20,
+      "sha256": "f843711200c74901131094b8dce7ecf24a4b12c7e620ecdae4b8b968a27dc80c",
+      "url": "../src/supermimic/policy/nets.py#L20"
+    },
+    "z-critic": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/mdp.py",
+      "line": 163,
+      "sha256": "19662edc4d994553ebb4cf587f3080ca95b407e53806f7cd28939937e135754f",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/mdp.py#L163"
+    },
+    "u-critic": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/tasks/motion_tracking/g1/supermimic/mdp.py",
+      "line": 249,
+      "sha256": "2ed79e4111447f132834ec49051a104debbf76f128eb6be1230f32a70135f661",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/tasks/motion_tracking/g1/supermimic/mdp.py#L249"
+    },
+    "o-trainer": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/imagination/policy_trainer.py",
+      "line": 56,
+      "sha256": "e2cd8f301492250fabc3d26faf5f5c34841196fdd39ee12880adc1a971734842",
+      "url": "../src/supermimic/imagination/policy_trainer.py#L56"
+    },
+    "z-norm": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/networks.py",
+      "line": 24,
+      "sha256": "72bdb2bf11f927663dec82ef00f75123dfe810cba9879fee455faac4042b1efe",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/networks.py#L24"
+    },
+    "u-norm": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/networks.py",
+      "line": 34,
+      "sha256": "253c109c83ba7f6076db2219d67b9be682d16b5610b6acd27ec5cd2a8de3edc3",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/networks.py#L34"
+    },
+    "u-wmerr": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/learner.py",
+      "line": 279,
+      "sha256": "d710f22b12e45509b0e9c79bebaf643c89f861ebcfea6583a1588db35e5d1949",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/learner.py#L279"
+    },
+    "o-state": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/world_model/state_spec.py",
+      "line": 47,
+      "sha256": "5e2cbc177056f010a1f4df80d9a3b4cf3ec4b5e84f0ff6a2c05d195500019c72",
+      "url": "../src/supermimic/world_model/state_spec.py#L47"
+    },
+    "o-dynamics": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/world_model/dynamics.py",
+      "line": 9,
+      "sha256": "ce21b40a69c6abddebd85e7e2f000fadfd37f9bebbdecd5d61510e1f68736cd7",
+      "url": "../src/supermimic/world_model/dynamics.py#L9"
+    },
+    "z-warm": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/train.py",
+      "line": 37,
+      "sha256": "b94569605bd3ff96a49d4903bb791bb54bc4695a03f1914c8447c0ec7dd1e6bd",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/train.py#L37"
+    },
+    "u-loop": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/learner.py",
+      "line": 632,
+      "sha256": "d710f22b12e45509b0e9c79bebaf643c89f861ebcfea6583a1588db35e5d1949",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/learner.py#L632"
+    },
+    "o-loop": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/training/loop.py",
+      "line": 35,
+      "sha256": "d78134b91668d4c327bf2911b6d6bcd1a53f685b1d9c9bb327bd5ddff1626ed6",
+      "url": "../src/supermimic/training/loop.py#L35"
+    },
+    "z-start": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/train.py",
+      "line": 159,
+      "sha256": "b94569605bd3ff96a49d4903bb791bb54bc4695a03f1914c8447c0ec7dd1e6bd",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/train.py#L159"
+    },
+    "z-padding": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/motion.py",
+      "line": 104,
+      "sha256": "f6c60b608de50f86556bd42e9c67d172f5955cdc48c8a8a902e9b86bfecdad58",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/motion.py#L104"
+    },
+    "o-eval-cli": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "scripts/eval_benchmark.py",
+      "line": 22,
+      "sha256": "bb11e6e9ad470c73b9461303ba9f9e8dd84dc89e59abf1088d890f35aafe87d7",
+      "url": "../scripts/eval_benchmark.py#L22"
+    },
+    "o-build": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "scripts/data/build_library.py",
+      "line": 18,
+      "sha256": "a3fd8a011f4df1ff00227787a4ba2d3bf7464c15faba65b87edf64cf90bb53ee",
+      "url": "../scripts/data/build_library.py#L18"
+    },
+    "c-filter": {
+      "repository": "CuboiLeo/SuperMimic-Reproduced",
+      "commit": "ba6105349069bf040f1fdad60873d13138d505a2",
+      "path": "scripts/data/filter_bones_seed.py",
+      "line": 29,
+      "sha256": "862636774444ca2331c3b3e054e45398f7c74854172242111fdb4bc128c9d463",
+      "url": "https://github.com/CuboiLeo/SuperMimic-Reproduced/blob/ba6105349069bf040f1fdad60873d13138d505a2/scripts/data/filter_bones_seed.py#L29"
+    },
+    "o-replay": {
+      "repository": "tianny0078/supermimic-repro",
+      "commit": "c00a98a1934fec59496486a152cd7a96b45f45be",
+      "path": "src/supermimic/data/replay_buffer.py",
+      "line": 97,
+      "sha256": "561eb96e295d511b12a2db9e2dbb735a53c161f06f7af1372a2cd2edd02ea4cf",
+      "url": "../src/supermimic/data/replay_buffer.py#L97"
+    },
+    "z-replay": {
+      "repository": "zita-ch/supermimic_vibed",
+      "commit": "0525a23a2dcfa61f8543f98b84c075fe66d9d286",
+      "path": "supermimic/buffer.py",
+      "line": 41,
+      "sha256": "adb1f373a1034d3338f07dcd4b42c1e5e66a635914c804a4f9f4648eff23de68",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/0525a23a2dcfa61f8543f98b84c075fe66d9d286/supermimic/buffer.py#L41"
+    },
+    "u-replay": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/replay.py",
+      "line": 59,
+      "sha256": "0f59171c05742b19b0e84e732a62fb4baae9c038d02073ba1b5867b0a012368b",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/replay.py#L59"
+    },
+    "u-learner": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/learner.py",
+      "line": 155,
+      "sha256": "d710f22b12e45509b0e9c79bebaf643c89f861ebcfea6583a1588db35e5d1949",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/learner.py#L155"
+    },
+    "u-geometry": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/rl/algos/supermimic/geometry.py",
+      "line": 91,
+      "sha256": "fcaf00aace6a64f27671f8b3943c73891d2692ae3b497db3aaf33eabdd94a9ac",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/rl/algos/supermimic/geometry.py#L91"
+    },
+    "c-merge": {
+      "repository": "CuboiLeo/SuperMimic-Reproduced",
+      "commit": "ba6105349069bf040f1fdad60873d13138d505a2",
+      "path": "scripts/merge_benchmark_shards.py",
+      "line": 16,
+      "sha256": "00972d2c777258e5efca3a5463049065af3af386e913d6d7ba82d8eae24a3ee6",
+      "url": "https://github.com/CuboiLeo/SuperMimic-Reproduced/blob/ba6105349069bf040f1fdad60873d13138d505a2/scripts/merge_benchmark_shards.py#L16"
+    },
+    "u-contract": {
+      "repository": "Motphys/Uni-SuperMimic",
+      "commit": "faee48a875579c45b3a41e6399b05ad014641ebf",
+      "path": "src/unisupermimic/sim2sim.py",
+      "line": 142,
+      "sha256": "d90f2eda1644d126fc7faf76023848f360d245adcd4cc3f3a406bc429f203e6a",
+      "url": "https://github.com/Motphys/Uni-SuperMimic/blob/faee48a875579c45b3a41e6399b05ad014641ebf/src/unisupermimic/sim2sim.py#L142"
+    }
+  },
+  "cpu_checks": {
+    "actual_evaluator_with_stubbed_io": {
+      "npz_manifest": {
+        "exception": "RuntimeError",
+        "message": "REACHED_SIMULATOR_STUB"
+      },
+      "packed_manifest": {
+        "exception": "ValueError",
+        "message": "Evaluation motion differs from the checkpoint's training library: clip.npz"
+      }
+    },
+    "held_pose_goal_padding": {
+      "joint_velocity_nonzero_values": 87,
+      "joint_velocity_value": 2.0,
+      "description": "Queries at the final frame repeat recorded nonzero final joint velocity into synthetic future frames."
+    },
+    "cuda_visible_devices": "",
+    "gpu_calls": false,
+    "measured_run_phase_medians_seconds_per_collection_step": {
+      "time/sim_s_per_iter": 0.02790760779986158,
+      "time/wm_s_per_iter": 0.07606828710762784,
+      "time/policy_s_per_iter": 0.18029612328624353
+    }
+  },
+  "findings": [
+    {
+      "id": "input_parity",
+      "priority": "P1",
+      "status": "missing_equivalent_mode",
+      "evidence": [
+        "z-obs",
+        "z-goal",
+        "u-goal",
+        "o-policy",
+        "o-imagine"
+      ]
+    },
+    {
+      "id": "critic_error_features",
+      "priority": "P1",
+      "status": "partial_option_not_enabled_full_features_missing",
+      "evidence": [
+        "z-critic",
+        "u-critic",
+        "o-policy",
+        "o-trainer"
+      ]
+    },
+    {
+      "id": "normalization",
+      "priority": "P1",
+      "status": "running_norm_and_layer_norm_missing",
+      "evidence": [
+        "z-norm",
+        "u-norm",
+        "o-state",
+        "o-dynamics"
+      ]
+    },
+    {
+      "id": "world_model_warmup",
+      "priority": "P1",
+      "status": "missing",
+      "evidence": [
+        "z-warm",
+        "u-loop",
+        "o-loop"
+      ]
+    },
+    {
+      "id": "clip_end",
+      "priority": "P1",
+      "status": "confirmed_behavior_difference_training_effect_unmeasured",
+      "evidence": [
+        "z-start",
+        "z-padding",
+        "o-imagine",
+        "o-goal"
+      ]
+    },
+    {
+      "id": "compact_library_evaluation",
+      "priority": "P1",
+      "status": "confirmed_interface_gap_via_cpu_stubs",
+      "evidence": [
+        "o-loop",
+        "o-eval-cli",
+        "o-build",
+        "u-eval"
+      ]
+    },
+    {
+      "id": "throughput",
+      "priority": "P2",
+      "status": "optimization_paths_missing_speedup_unmeasured",
+      "evidence": [
+        "o-replay",
+        "z-replay",
+        "u-replay",
+        "o-loop",
+        "u-learner",
+        "u-geometry"
+      ]
+    },
+    {
+      "id": "evaluation_denominator",
+      "status": "local_fix_should_be_preserved",
+      "evidence": [
+        "c-eval",
+        "z-eval",
+        "u-eval"
+      ]
+    },
+    {
+      "id": "large_library_shard_merge",
+      "priority": "P2",
+      "status": "clip_list_exists_merge_missing",
+      "evidence": [
+        "o-eval-cli",
+        "c-merge"
+      ]
+    }
+  ],
+  "limits": [
+    "Third-party results are author reports, no checkpoint was executed.",
+    "No GPU work or training code changes in this audit.",
+    "Configuration differences do not establish causal effects.",
+    "Downloaded file count is not the count of fully audited files."
+  ],
+  "documents": {
+    "english_audit": "top3-code-audit-2026-11-01.en.md",
+    "chinese_audit": "top3-code-audit-2026-11-01.zh-CN.md",
+    "english_plan": "reproduction-plan.en.md"
+  },
+  "execution_status": "New GPU work is on hold at the user request; documentation publication does not submit jobs."
+}
